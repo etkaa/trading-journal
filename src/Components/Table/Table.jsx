@@ -1,78 +1,70 @@
 import React from "react";
-import {
-  TableContainer,
-  StyledTable,
-  TableHead,
-  TableCell,
-} from "./Table.styles";
+import { TableContainer, StyledTable } from "./Table.styles";
+import TableHead from "./TableHead";
+
+import Entry from "../Entry/Entry";
+
+const DUMMY_DATA = [
+  {
+    id: 1,
+    pair: "EURUSD",
+    date: "8/8/2022",
+    time: "12:17 am",
+    outcome: "Win",
+    riskReward: "1/4",
+    pAndL: "200",
+    details: 1,
+  },
+  {
+    id: 2,
+    pair: "USDJPY",
+    date: "8/8/2022",
+    time: "12:17 am",
+    outcome: "Win",
+    riskReward: "1/4",
+    pAndL: "200",
+    details: 2,
+  },
+  {
+    id: 3,
+    pair: "AUDUSD",
+    date: "8/8/2022",
+    time: "12:17 am",
+    outcome: "Win",
+    riskReward: "1/4",
+    pAndL: "200",
+    details: 3,
+  },
+  {
+    id: 4,
+    pair: "NZDUSD",
+    date: "8/8/2022",
+    time: "12:17 am",
+    outcome: "Win",
+    riskReward: "1/4",
+    pAndL: "200",
+    details: 4,
+  },
+  {
+    id: 5,
+    pair: "GBPUSD",
+    date: "8/8/2022",
+    time: "12:17 am",
+    outcome: "Win",
+    riskReward: "1/4",
+    pAndL: "200",
+    details: 5,
+  },
+];
 
 const Table = () => {
   return (
     <TableContainer>
       <StyledTable>
-        <tr>
-          <TableHead>Pair</TableHead>
-          <TableHead>Date</TableHead>
-          <TableHead>Time</TableHead>
-          <TableHead>Outcome</TableHead>
-          <TableHead>Risk/Reward</TableHead>
-          <TableHead>P/L ($)</TableHead>
-          <TableHead>Details</TableHead>
-        </tr>
-        <tr>
-          <TableCell>EURUSD</TableCell>
-          <TableCell>10/22/2022</TableCell>
-          <TableCell>10:15 EST</TableCell>
-          <TableCell>Win</TableCell>
-          <TableCell>1/4</TableCell>
-          <TableCell>+300</TableCell>
-          <TableCell>🢂</TableCell>
-        </tr>
-        <tr>
-          <TableCell>GBPUSD</TableCell>
-          <TableCell>10/23/2022</TableCell>
-          <TableCell>10:52 EST</TableCell>
-          <TableCell>Loss</TableCell>
-          <TableCell>1/5</TableCell>
-          <TableCell>-75</TableCell>
-          <TableCell>🢂</TableCell>
-        </tr>
-        <tr>
-          <TableCell>NZDUSD</TableCell>
-          <TableCell>10/22/2022</TableCell>
-          <TableCell>10:15 EST</TableCell>
-          <TableCell>Win</TableCell>
-          <TableCell>1/4</TableCell>
-          <TableCell>300</TableCell>
-          <TableCell>🢂</TableCell>
-        </tr>
-        <tr>
-          <TableCell>EURUSD</TableCell>
-          <TableCell>10/22/2022</TableCell>
-          <TableCell>10:15 EST</TableCell>
-          <TableCell>Win</TableCell>
-          <TableCell>1/4</TableCell>
-          <TableCell>300</TableCell>
-          <TableCell>🢂</TableCell>
-        </tr>
-        <tr>
-          <TableCell>AUDUSD</TableCell>
-          <TableCell>10/22/2022</TableCell>
-          <TableCell>10:15 EST</TableCell>
-          <TableCell>Win</TableCell>
-          <TableCell>1/4</TableCell>
-          <TableCell>300</TableCell>
-          <TableCell>🢂</TableCell>
-        </tr>
-        <tr>
-          <TableCell>EURUSD</TableCell>
-          <TableCell>10/22/2022</TableCell>
-          <TableCell>10:15 EST</TableCell>
-          <TableCell>Win</TableCell>
-          <TableCell>1/4</TableCell>
-          <TableCell>300</TableCell>
-          <TableCell>🢂</TableCell>
-        </tr>
+        <TableHead />
+        {DUMMY_DATA.map((entry) => {
+          return <Entry entry={entry} />;
+        })}
       </StyledTable>
     </TableContainer>
   );

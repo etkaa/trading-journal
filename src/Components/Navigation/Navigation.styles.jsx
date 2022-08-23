@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const NavBar = styled.ul`
-  background-color: #16003b;
+  background-color: #100720;
   list-style: none;
   font-size: 2em;
   display: flex;

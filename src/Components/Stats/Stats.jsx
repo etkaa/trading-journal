@@ -1,18 +1,13 @@
 import React from "react";
-import { StatsContainer, PandL, WandL } from "./Stats.styles";
+import { StatsContainer } from "./Stats.styles";
 
 const Stats = () => {
   return (
     <StatsContainer>
-      <WandL>
-        <label>Win/Loss Ratio</label>
-        <h3>%50</h3>
-      </WandL>
-      <hr></hr>
-      <PandL>
-        <label>Current P/L</label>
-        <h3>+ $2,300</h3>
-      </PandL>
+      <div className="current-pandl">current p and l</div>
+      <div className="Win/Loss-ratio">Win/Loss-ratio</div>
+      <div className="balance">balance</div>
+      <div className="average-risk-reward">average-risk-reward</div>
     </StatsContainer>
   );
 };
