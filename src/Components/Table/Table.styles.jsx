@@ -9,6 +9,7 @@ export const TableContainer = styled.div`
   border-radius: 10px;
   color: white;
   text-align: center;
+  border-collapse: collapse;
 `;
 
 export const StyledTable = styled.table`

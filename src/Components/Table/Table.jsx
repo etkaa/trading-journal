@@ -10,9 +10,12 @@ const DUMMY_DATA = [
     pair: "EURUSD",
     date: "8/8/2022",
     time: "12:17 am",
+    open: 1.09456,
+    close: 1.09847,
+    volume: 5.69,
     outcome: "Win",
-    riskReward: "1/4",
-    pAndL: "200",
+    riskReward: "1/24",
+    pAndL: "895",
     details: 1,
   },
   {
@@ -20,9 +23,12 @@ const DUMMY_DATA = [
     pair: "USDJPY",
     date: "8/8/2022",
     time: "12:17 am",
+    open: 1.09456,
+    close: 1.09847,
+    volume: 5.69,
     outcome: "Win",
-    riskReward: "1/4",
-    pAndL: "200",
+    riskReward: "1/8",
+    pAndL: "2210",
     details: 2,
   },
   {
@@ -30,9 +36,12 @@ const DUMMY_DATA = [
     pair: "AUDUSD",
     date: "8/8/2022",
     time: "12:17 am",
-    outcome: "Win",
-    riskReward: "1/4",
-    pAndL: "200",
+    open: 1.09456,
+    close: 1.09847,
+    volume: 5.69,
+    outcome: "Loss",
+    riskReward: "1/3",
+    pAndL: "- 200",
     details: 3,
   },
   {
@@ -40,9 +49,12 @@ const DUMMY_DATA = [
     pair: "NZDUSD",
     date: "8/8/2022",
     time: "12:17 am",
-    outcome: "Win",
-    riskReward: "1/4",
-    pAndL: "200",
+    open: 1.09456,
+    close: 1.09847,
+    volume: 5.69,
+    outcome: "Loss",
+    riskReward: "1/12",
+    pAndL: "- 200",
     details: 4,
   },
   {
@@ -50,9 +62,12 @@ const DUMMY_DATA = [
     pair: "GBPUSD",
     date: "8/8/2022",
     time: "12:17 am",
+    open: 1.09456,
+    close: 1.09847,
+    volume: 5.69,
     outcome: "Win",
-    riskReward: "1/4",
-    pAndL: "200",
+    riskReward: "1/6",
+    pAndL: "450",
     details: 5,
   },
 ];
@@ -63,7 +78,7 @@ const Table = () => {
       <StyledTable>
         <TableHead />
         {DUMMY_DATA.map((entry) => {
-          return <Entry entry={entry} />;
+          return <Entry key={entry.id} entry={entry} />;
         })}
       </StyledTable>
     </TableContainer>

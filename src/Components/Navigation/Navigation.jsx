@@ -16,10 +16,10 @@ const Navigation = () => {
         </LogoContainer>
         <LinksContainer>
           <li>
-            <NavLink to="/dashboard">Home</NavLink>
+            <NavLink to="/dashboard">Dashboard</NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard">Profile</NavLink>
+            <NavLink to="/profile">Profile</NavLink>
           </li>
           <li>
             <NavLink to="/signin">Sign Out</NavLink>

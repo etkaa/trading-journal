@@ -7,6 +7,9 @@ const TableHead = () => {
       <TableHeadItem>Pair</TableHeadItem>
       <TableHeadItem>Date</TableHeadItem>
       <TableHeadItem>Time</TableHeadItem>
+      <TableHeadItem>Open</TableHeadItem>
+      <TableHeadItem>Close</TableHeadItem>
+      <TableHeadItem>Volume</TableHeadItem>
       <TableHeadItem>Outcome</TableHeadItem>
       <TableHeadItem>Risk/Reward</TableHeadItem>
       <TableHeadItem>P/L ($)</TableHeadItem>

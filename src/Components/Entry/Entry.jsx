@@ -8,6 +8,9 @@ const Entry = ({ entry }) => {
         <TableCell>{entry.pair}</TableCell>
         <TableCell>{entry.date}</TableCell>
         <TableCell>{entry.time}</TableCell>
+        <TableCell>{entry.open}</TableCell>
+        <TableCell>{entry.close}</TableCell>
+        <TableCell>{entry.volume}</TableCell>
         <TableCell>{entry.outcome}</TableCell>
         <TableCell>{entry.riskReward}</TableCell>
         <TableCell>{entry.pAndL}</TableCell>
