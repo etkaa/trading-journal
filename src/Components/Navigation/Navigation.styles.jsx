@@ -8,7 +8,7 @@ export const NavBar = styled.ul`
   display: flex;
   margin-top: 0;
   align-items: center;
-  padding: 30px;
+  padding: 20px 40px;
   justify-content: space-between;
   height: 30px;
 `;
@@ -29,7 +29,7 @@ export const LogoContainer = styled(Link)`
 export const NavLink = styled(Link)`
   text-decoration: none;
   color: aliceblue;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 
   :hover {
     color: white;
