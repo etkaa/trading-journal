@@ -85,3 +85,14 @@ export const Button = styled.button`
     font-weight: 700;
   }
 `;
+
+export const ErrorLabel = styled.label`
+  font-size: 17px;
+  width: 60%;
+  text-align: center;
+  margin: 0px auto 20px;
+  background-color: red;
+  border-radius: 10px;
+  padding: 5px;
+  color: white;
+`;

@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { ReactComponent as CrwnLogo } from "../../Assets/crown.svg";
 import {
   NavBar,
@@ -8,6 +10,34 @@ import {
 } from "./Navigation.styles";
 
 const Navigation = () => {
+  // const [loggedIn, setLoggedIn] = useState();
+
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    await axios
+      .get(
+        "http://localhost:8000/auth/logout",
+        {
+          data: "dummy-data",
+        },
+        {
+          headers: {
+            "content-type": "application/json",
+          },
+        }
+      )
+      .then(function (response) {
+        console.log("response.data:", response.data);
+        if (response.data.success === true) {
+          navigate("/signin");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
       <NavBar>
@@ -22,7 +52,9 @@ const Navigation = () => {
             <NavLink to="/profile">Profile</NavLink>
           </li>
           <li>
-            <NavLink to="/signin">Sign Out</NavLink>
+            <NavLink onClick={handleSignOut} to="">
+              Sign Out
+            </NavLink>
           </li>
         </LinksContainer>
       </NavBar>
