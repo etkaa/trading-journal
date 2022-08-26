@@ -1,5 +1,7 @@
 import React, { Fragment, useState } from "react";
 import Navigation from "../Navigation/Navigation";
+import { useContext } from "react";
+import { UserContext } from "../../Context/User.Context";
 import {
   ProfileContainer,
   ImageContainer,
@@ -14,23 +16,38 @@ import {
 
 //WILL NEED TO GET THESE DEFAULT VALUES FROM USER OBJECT
 
-const defaultProfileField = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  initialBalance: "",
-  brokerName: "",
-};
+// const defaultProfileFields = {
+//   firstName: "",
+//   lastName: "",
+//   email: "",
+//   initialBalance: "",
+//   brokerName: "",
+// };
 
 const Profile = () => {
-  const [profileFields, setProfileFields] = useState(defaultProfileField);
+  const { currentUser, updateUserProfileFields } = useContext(UserContext);
+  const userProfileFields = {
+    firstName: currentUser.fullName || "",
+    lastName: currentUser.lastName || "",
+    email: currentUser.username,
+    initialBalance: currentUser.profile.initialBalance || "",
+    brokerName: currentUser.profile.brokerName || "",
+  };
+
+  const [profileFormFields, setProfileFormFields] = useState(userProfileFields);
   const { firstName, lastName, email, initialBalance, brokerName } =
-    profileFields;
+    profileFormFields;
 
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    setProfileFields({ ...profileFields, [name]: value });
+    setProfileFormFields({ ...profileFormFields, [name]: value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    updateUserProfileFields(profileFormFields);
   };
 
   return (
@@ -50,11 +67,11 @@ const Profile = () => {
           </ImageInputLabel>
         </ImageContainer>
         <FormContainer>
-          <StyledForm>
+          <StyledForm onSubmit={handleSubmit}>
             <InputDiv>
               <label>Name</label>
               <ProfileInfoInput
-                placeholder="Name"
+                placeholder="'First Name'"
                 type="text"
                 onChange={handleChange}
                 name="firstName"
@@ -66,48 +83,46 @@ const Profile = () => {
             <InputDiv>
               <label>Last Name</label>
               <ProfileInfoInput
-                placeholder="Last Name"
+                placeholder="'Last Name'"
                 type="text"
                 onChange={handleChange}
                 name="lastName"
                 value={lastName}
-                required
                 autoComplete="off"
               />
             </InputDiv>
             <InputDiv>
               <label>E-Mail Address</label>
               <ProfileInfoInput
-                placeholder="E-Mail Address"
+                placeholder="'Email'"
                 type="text"
                 onChange={handleChange}
                 name="email"
                 value={email}
                 required
+                disabled
                 autoComplete="off"
               />
             </InputDiv>
             <InputDiv>
               <label>Initial Balance</label>
               <ProfileInfoInput
-                placeholder="Initial Balance"
+                placeholder="'Initial Balance'"
                 type="string"
                 onChange={handleChange}
                 name="initialBalance"
                 value={initialBalance}
-                required
                 autoComplete="off"
               />
             </InputDiv>
             <InputDiv>
               <label>Broker Name</label>
               <ProfileInfoInput
-                placeholder="Broker Name"
+                placeholder="'Broker Name'"
                 type="text"
                 onChange={handleChange}
                 name="brokerName"
                 value={brokerName}
-                required
                 autoComplete="off"
               />
             </InputDiv>

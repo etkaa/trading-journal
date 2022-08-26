@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../Context/User.Context";
 import {
   Wrapper,
   Input,
@@ -21,6 +22,7 @@ const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const [errorMessage, setErrorMessage] = useState(null);
   const { name, username, password } = formFields;
+  const { setCurrentUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -54,6 +56,7 @@ const SignUpForm = () => {
       .then((response) => {
         console.log("response.data:", response.data);
         if (response.data.success === true) {
+          setCurrentUser(response.data.user);
           navigate("/dashboard");
         } else {
           setErrorMessage(response.data.message);

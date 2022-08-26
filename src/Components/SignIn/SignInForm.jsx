@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Wrapper,
   Input,
@@ -10,6 +10,7 @@ import {
   Button,
   ErrorLabel,
 } from "./SignInForm.styles";
+import { UserContext } from "../../Context/User.Context";
 
 const defaultFormFields = {
   username: "",
@@ -20,7 +21,10 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const [error, setError] = useState(false);
   const { username, password } = formFields;
+  const { setCurrentUser } = useContext(UserContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/dashboard";
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -45,13 +49,13 @@ const SignInForm = () => {
         }
       )
       .then((response) => {
-        console.log("SignIn Component: ", response.data);
         if (response.data.success === true) {
-          navigate("/dashboard");
+          setCurrentUser(response.data.user);
+          navigate(from, { replace: true });
         }
       })
       .catch((error) => {
-        console.log("this is the error from client side: ", error);
+        console.log(error);
         setError(true);
       });
 

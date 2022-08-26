@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as CrwnLogo } from "../../Assets/crown.svg";
@@ -8,28 +8,24 @@ import {
   LinksContainer,
   LogoContainer,
 } from "./Navigation.styles";
+import { UserContext } from "../../Context/User.Context";
 
 const Navigation = () => {
   // const [loggedIn, setLoggedIn] = useState();
-
+  const { setCurrentUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
     await axios
-      .get(
-        "http://localhost:8000/auth/logout",
-        {
-          data: "dummy-data",
+      .get("http://localhost:8000/auth/logout", {
+        headers: {
+          "content-type": "application/json",
         },
-        {
-          headers: {
-            "content-type": "application/json",
-          },
-        }
-      )
+      })
       .then(function (response) {
         console.log("response.data:", response.data);
         if (response.data.success === true) {
+          setCurrentUser(null);
           navigate("/signin");
         }
       })

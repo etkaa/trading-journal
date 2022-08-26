@@ -107,15 +107,20 @@ export const ProfileInfoInput = styled.input`
   height: 50px;
   margin: 5px auto;
   background-color: #2c3333;
+  color: gray;
 
   outline: none;
   box-shadow: none;
   border: none;
   border-radius: 5px;
-  color: white;
   padding: 5px;
   font-size: 15px;
   padding-left: 15px;
+
+  :focus {
+    color: white;
+    box-shadow: 1px 1px;
+  }
 `;
 
 export const Button = styled.button`
