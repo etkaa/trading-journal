@@ -14,29 +14,17 @@ import {
   Button,
 } from "./Profile.styles";
 
-//WILL NEED TO GET THESE DEFAULT VALUES FROM USER OBJECT
-
-// const defaultProfileFields = {
-//   firstName: "",
-//   lastName: "",
-//   email: "",
-//   initialBalance: "",
-//   brokerName: "",
-// };
-
 const Profile = () => {
   const { currentUser, updateUserProfileFields } = useContext(UserContext);
   const userProfileFields = {
-    firstName: currentUser.fullName || "",
-    lastName: currentUser.lastName || "",
+    fullName: currentUser.fullName || "",
     email: currentUser.username,
     initialBalance: currentUser.profile.initialBalance || "",
     brokerName: currentUser.profile.brokerName || "",
   };
 
   const [profileFormFields, setProfileFormFields] = useState(userProfileFields);
-  const { firstName, lastName, email, initialBalance, brokerName } =
-    profileFormFields;
+  const { fullName, email, initialBalance, brokerName } = profileFormFields;
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -44,7 +32,7 @@ const Profile = () => {
     setProfileFormFields({ ...profileFormFields, [name]: value });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     updateUserProfileFields(profileFormFields);
@@ -71,23 +59,12 @@ const Profile = () => {
             <InputDiv>
               <label>Name</label>
               <ProfileInfoInput
-                placeholder="'First Name'"
+                placeholder="'Full Name'"
                 type="text"
                 onChange={handleChange}
-                name="firstName"
-                value={firstName}
+                name="fullName"
+                value={fullName}
                 required
-                autoComplete="off"
-              />
-            </InputDiv>
-            <InputDiv>
-              <label>Last Name</label>
-              <ProfileInfoInput
-                placeholder="'Last Name'"
-                type="text"
-                onChange={handleChange}
-                name="lastName"
-                value={lastName}
                 autoComplete="off"
               />
             </InputDiv>

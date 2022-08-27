@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { updateUserTrades } from "../../Utils/ApiRequests";
 import {
   FormContainer,
   StyledForm,
@@ -18,15 +19,21 @@ const defaultDataFormFields = {
   pAndL: "",
 };
 
-const DataForm = () => {
+const DataForm = ({ userId }) => {
   const [dataFormFields, setDataFormFields] = useState(defaultDataFormFields);
   const { pair, date, time, open, close, volume, outcome, riskReward, pAndL } =
     dataFormFields;
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(dataFormFields);
-    setDataFormFields(defaultDataFormFields);
+
+    const result = await updateUserTrades(userId, dataFormFields);
+    if (result === true) {
+      console.log(result);
+      setDataFormFields(defaultDataFormFields);
+    } else {
+      console.log(result);
+    }
   };
 
   const handleChange = (event) => {

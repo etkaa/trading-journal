@@ -1,7 +1,6 @@
 import React from "react";
 import { TableContainer, StyledTable } from "./Table.styles";
 import TableHead from "./TableHead";
-
 import Entry from "../Entry/Entry";
 
 const DUMMY_DATA = [
@@ -72,7 +71,9 @@ const DUMMY_DATA = [
   },
 ];
 
-const Table = () => {
+const Table = (props) => {
+  // const userTrades = props.data;
+
   return (
     <TableContainer>
       <StyledTable>

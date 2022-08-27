@@ -7,6 +7,7 @@ export const UserContext = createContext({
   currentUser: null,
   setCurrentUser: () => {},
   updateUserProfileFields: () => {},
+  // updateUserTrades: () => {},
 });
 
 export const UserProvider = ({ children }) => {
@@ -39,6 +40,32 @@ export const UserProvider = ({ children }) => {
       });
   };
 
+  // const updateUserTrades = async (newTradeFields) => {
+  //   await axios
+  //     .post(
+  //       "http://localhost:8000/user/update/trades",
+  //       {
+  //         userID: currentUser._id,
+  //         newTrade: newTradeFields,
+  //       },
+  //       {
+  //         headers: {
+  //           "content-type": "application/json",
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       if (response.status === 200) {
+  //         //NEED TO ADJUST HERE SO IT DOESN'T CHANGE THE USER
+  //         //EVERYTIME AND NO NEED TO SIGN IN ON EVERY UPDATE
+  //         // setCurrentUser(response.data.user);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
   // console.log("user provider hit");
   // console.log("this is currentUser", currentUser);
 
@@ -67,7 +94,12 @@ export const UserProvider = ({ children }) => {
   //   getAuth();
   // }, [currentUser]);
 
-  const value = { currentUser, setCurrentUser, updateUserProfileFields };
+  const value = {
+    currentUser,
+    setCurrentUser,
+    updateUserProfileFields,
+    // updateUserTrades,
+  };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };

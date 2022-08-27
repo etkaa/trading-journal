@@ -121,6 +121,8 @@ export const ProfileInfoInput = styled.input`
     color: white;
     box-shadow: 1px 1px;
   }
+
+  
 `;
 
 export const Button = styled.button`

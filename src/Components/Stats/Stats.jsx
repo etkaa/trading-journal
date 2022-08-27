@@ -12,7 +12,7 @@ const Stats = () => {
       />
       <StatCard
         statTitle={"Current Balance"}
-        stat={"$2,600,589.25"}
+        stat={"$2,589.25"}
         statDetail={"Interactive Brokers"}
       />
       <StatCard
