@@ -58,18 +58,11 @@ export const getUserTrades = async (currentUser) => {
   let userTrades;
 
   await axios
-    .get(
-      "http://localhost:8000/user/getalltrades",
-      {
-        userID: currentUser._id,
-        userTrades: [currentUser.userTrades],
+    .get(`http://localhost:8000/user/getalltrades/${currentUser._id}`, {
+      headers: {
+        "content-type": "application/json",
       },
-      {
-        headers: {
-          "content-type": "application/json",
-        },
-      }
-    )
+    })
     .then((response) => {
       if (response.status === 200) {
         userTrades = response.data.tradesOfUser;

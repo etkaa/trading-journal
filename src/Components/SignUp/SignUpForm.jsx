@@ -32,7 +32,6 @@ const SignUpForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("This is what we sent:", formFields);
 
     await axios
       .post(
@@ -42,10 +41,6 @@ const SignUpForm = () => {
           username: formFields.username,
           password: formFields.password,
           auth_method: "local",
-          profile: {
-            fullName: formFields.name,
-            email: formFields.username,
-          },
         },
         {
           headers: {
