@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../../Context/User.Context";
 import { updateUserTrades } from "../../Utils/ApiRequests";
 import {
   FormContainer,
@@ -19,27 +20,25 @@ const defaultDataFormFields = {
   pAndL: "",
 };
 
-const DataForm = ({ userId }) => {
+const DataForm = () => {
+  const { currentUser, setCurrentUser } = useContext(UserContext);
   const [dataFormFields, setDataFormFields] = useState(defaultDataFormFields);
   const { pair, date, time, open, close, volume, outcome, riskReward, pAndL } =
     dataFormFields;
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const result = await updateUserTrades(userId, dataFormFields);
-    if (result === true) {
-      console.log(result);
-      setDataFormFields(defaultDataFormFields);
-    } else {
-      console.log(result);
-    }
-  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
 
     setDataFormFields({ ...dataFormFields, [name]: value });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const userId = currentUser._id;
+    const result = await updateUserTrades(userId, dataFormFields);
+    setCurrentUser(result);
+    setDataFormFields(defaultDataFormFields);
   };
 
   return (

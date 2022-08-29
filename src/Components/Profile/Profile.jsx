@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import Navigation from "../Navigation/Navigation";
 import { useContext } from "react";
 import { UserContext } from "../../Context/User.Context";
+import { updateUserProfileFields } from "../../Utils/ApiRequests";
 import {
   ProfileContainer,
   ImageContainer,
@@ -15,7 +16,7 @@ import {
 } from "./Profile.styles";
 
 const Profile = () => {
-  const { currentUser, updateUserProfileFields } = useContext(UserContext);
+  const { currentUser, setCurrentUser } = useContext(UserContext);
   const userProfileFields = {
     fullName: currentUser.fullName || "",
     email: currentUser.username,
@@ -35,7 +36,12 @@ const Profile = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    updateUserProfileFields(profileFormFields);
+    const newUser = await updateUserProfileFields(
+      currentUser,
+      profileFormFields
+    );
+
+    setCurrentUser(newUser);
   };
 
   return (

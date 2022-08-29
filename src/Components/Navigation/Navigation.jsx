@@ -32,6 +32,8 @@ const Navigation = () => {
       .catch(function (error) {
         console.log(error);
       });
+
+    localStorage.removeItem("userSession");
   };
 
   return (
