@@ -3,10 +3,13 @@ import { createContext, useState, useEffect } from "react";
 export const UserContext = createContext({
   currentUser: null,
   setCurrentUser: () => {},
+  toggler: false,
+  setToggler: () => {},
 });
 
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const [toggler, setToggler] = useState(false);
 
   // console.log("user provider hit");
   // console.log("this is currentUser", currentUser);
@@ -33,6 +36,8 @@ export const UserProvider = ({ children }) => {
   const value = {
     currentUser,
     setCurrentUser,
+    toggler,
+    setToggler,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

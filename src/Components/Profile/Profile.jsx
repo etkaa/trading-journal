@@ -1,48 +1,17 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import Navigation from "../Navigation/Navigation";
-import { useContext } from "react";
-import { UserContext } from "../../Context/User.Context";
-import { updateUserProfileFields } from "../../Utils/ApiRequests";
+import ProfileForm from "../ProfileForm/ProfileForm";
 import {
   ProfileContainer,
   ImageContainer,
   ProfilePicture,
   ImageInputLabel,
   FormContainer,
-  StyledForm,
-  ProfileInfoInput,
-  InputDiv,
-  Button,
 } from "./Profile.styles";
 
 const Profile = () => {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
-  const userProfileFields = {
-    fullName: currentUser.fullName || "",
-    email: currentUser.username,
-    initialBalance: currentUser.profile.initialBalance || "",
-    brokerName: currentUser.profile.brokerName || "",
-  };
-
-  const [profileFormFields, setProfileFormFields] = useState(userProfileFields);
-  const { fullName, email, initialBalance, brokerName } = profileFormFields;
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setProfileFormFields({ ...profileFormFields, [name]: value });
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const newUser = await updateUserProfileFields(
-      currentUser,
-      profileFormFields
-    );
-
-    setCurrentUser(newUser);
-  };
+  //when upload file, upload it to cloud,
+  //get download link back, save it to user
 
   return (
     <Fragment>
@@ -61,56 +30,7 @@ const Profile = () => {
           </ImageInputLabel>
         </ImageContainer>
         <FormContainer>
-          <StyledForm onSubmit={handleSubmit}>
-            <InputDiv>
-              <label>Name</label>
-              <ProfileInfoInput
-                placeholder="'Full Name'"
-                type="text"
-                onChange={handleChange}
-                name="fullName"
-                value={fullName}
-                required
-                autoComplete="off"
-              />
-            </InputDiv>
-            <InputDiv>
-              <label>E-Mail Address</label>
-              <ProfileInfoInput
-                placeholder="'Email'"
-                type="text"
-                onChange={handleChange}
-                name="email"
-                value={email}
-                required
-                disabled
-                autoComplete="off"
-              />
-            </InputDiv>
-            <InputDiv>
-              <label>Initial Balance</label>
-              <ProfileInfoInput
-                placeholder="'Initial Balance'"
-                type="string"
-                onChange={handleChange}
-                name="initialBalance"
-                value={initialBalance}
-                autoComplete="off"
-              />
-            </InputDiv>
-            <InputDiv>
-              <label>Broker Name</label>
-              <ProfileInfoInput
-                placeholder="'Broker Name'"
-                type="text"
-                onChange={handleChange}
-                name="brokerName"
-                value={brokerName}
-                autoComplete="off"
-              />
-            </InputDiv>
-            <Button type="submit">Update Profile</Button>
-          </StyledForm>
+          <ProfileForm />
         </FormContainer>
       </ProfileContainer>
     </Fragment>

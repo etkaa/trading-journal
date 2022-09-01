@@ -21,7 +21,7 @@ const defaultDataFormFields = {
 };
 
 const DataForm = () => {
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser, setToggler, toggler } = useContext(UserContext);
   const [dataFormFields, setDataFormFields] = useState(defaultDataFormFields);
   const { pair, date, time, open, close, volume, outcome, riskReward, pAndL } =
     dataFormFields;
@@ -37,7 +37,11 @@ const DataForm = () => {
 
     const userId = currentUser._id;
     const result = await updateUserTrades(userId, dataFormFields);
-    setCurrentUser(result);
+    if (result === true) {
+      setToggler(!toggler);
+    } else {
+      alert("Please try again!");
+    }
     setDataFormFields(defaultDataFormFields);
   };
 

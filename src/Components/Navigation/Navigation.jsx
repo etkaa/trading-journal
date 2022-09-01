@@ -23,7 +23,6 @@ const Navigation = () => {
         },
       })
       .then(function (response) {
-        console.log("response.data:", response.data);
         if (response.data.success === true) {
           setCurrentUser(null);
           navigate("/signin");

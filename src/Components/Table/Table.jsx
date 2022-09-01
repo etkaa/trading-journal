@@ -8,7 +8,7 @@ import { UserContext } from "../../Context/User.Context";
 import { getUserTrades } from "../../Utils/ApiRequests";
 
 const Table = () => {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, toggler } = useContext(UserContext);
   const [userTrades, setUserTrades] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -20,7 +20,7 @@ const Table = () => {
       setUserTrades(allTrades);
     };
     fetchData();
-  }, [currentUser, setUserTrades]);
+  }, [currentUser, setUserTrades, toggler]);
 
   return (
     <TableContainer>

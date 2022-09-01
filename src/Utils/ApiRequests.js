@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const updateUserTrades = async (id, newTradeFields) => {
-  let newUserWithNewTrades;
+  let result;
   await axios
     .post(
       "http://localhost:8000/user/update/trades",
@@ -16,23 +16,27 @@ export const updateUserTrades = async (id, newTradeFields) => {
       }
     )
     .then((response) => {
-      newUserWithNewTrades = response.data.updatedUser;
+      if (response.status === 200) {
+        result = true;
+      } else {
+        result = false;
+      }
     })
     .catch((error) => {
       console.log(error);
     });
 
-  return newUserWithNewTrades;
+  return result;
 };
 
-export const updateUserProfileFields = async (currentUser, newFormFields) => {
-  let newUser;
+export const updateUserProfileFields = async (userID, newFormFields) => {
+  let result;
 
   await axios
     .post(
       "http://localhost:8000/user/update/profile",
       {
-        userID: currentUser._id,
+        userID: userID,
         fullName: newFormFields.fullName,
         email: newFormFields.email,
         initialBalance: newFormFields.initialBalance,
@@ -45,20 +49,45 @@ export const updateUserProfileFields = async (currentUser, newFormFields) => {
       }
     )
     .then((response) => {
-      newUser = response.data.updatedUser;
+      if (response.status === 200) {
+        result = true;
+        console.log("Update user profile success!");
+      }
+      // newUser = response.data.updatedUser;
     })
     .catch((error) => {
       console.log(error);
     });
 
-  return newUser;
+  return result;
+};
+
+export const getUserProfileFields = async (userID) => {
+  let userProfileFields;
+
+  await axios
+    .get(`http://localhost:8000/user/profile/${userID}`, {
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        userProfileFields = response.data;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  return userProfileFields;
 };
 
 export const getUserTrades = async (currentUser) => {
   let userTrades;
 
   await axios
-    .get(`http://localhost:8000/user/getalltrades/${currentUser._id}`, {
+    .get(`http://localhost:8000/user/trades/${currentUser._id}`, {
       headers: {
         "content-type": "application/json",
       },
