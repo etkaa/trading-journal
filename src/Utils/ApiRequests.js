@@ -103,3 +103,24 @@ export const getUserTrades = async (currentUser) => {
 
   return userTrades;
 };
+
+export const getUserStats = async (id) => {
+  let allStats;
+
+  await axios
+    .get(`http://localhost:8000/user/stats/${id}`, {
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        allStats = response.data.userStats;
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  return allStats;
+};
