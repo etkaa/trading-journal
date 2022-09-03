@@ -5,6 +5,7 @@ export const FormContainer = styled.div`
   width: 80%;
   border-radius: 10px;
   background-color: #100720;
+  box-shadow: 0px 10px 25px rgb(0 0 0 / 0.3);
 `;
 
 export const StyledForm = styled.form`
@@ -45,16 +46,24 @@ export const FormInput = styled.input`
   border: 1px solid #3d3c42;
   width: 10%;
   color: white;
+  box-shadow: 0px 2px 5px rgb(114 76 249 / 0.7);
+
+  :focus {
+    outline: none;
+    border: 2px solid #724cf9;
+    border-radius: 5px;
+  }
 `;
 
 export const Button = styled.button`
   margin: 10px 5px;
   text-align: center;
-  background-color: #2c3360;
+  background-color: #724cf9;
   border-radius: 5px;
   height: 54px;
   font-size: 20px;
   border: 1px solid #3d3c42;
+  box-shadow: 0px 2px 5px rgb(114 76 249 / 0.7);
   width: 10%;
   color: white;
   cursor: pointer;

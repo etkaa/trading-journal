@@ -10,6 +10,7 @@ export const TableContainer = styled.div`
   color: white;
   text-align: center;
   border-collapse: collapse;
+  box-shadow: 0px 10px 25px rgb(0 0 0 / 0.3);
 `;
 
 export const StyledTable = styled.table`

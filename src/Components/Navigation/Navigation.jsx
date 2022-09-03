@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext} from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import { ReactComponent as CrwnLogo } from "../../Assets/crown.svg";
 import {
   NavBar,
@@ -11,7 +11,6 @@ import {
 import { UserContext } from "../../Context/User.Context";
 
 const Navigation = () => {
-  // const [loggedIn, setLoggedIn] = useState();
   const { setCurrentUser } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -43,10 +42,14 @@ const Navigation = () => {
         </LogoContainer>
         <LinksContainer>
           <li>
-            <NavLink to="/dashboard">Dashboard</NavLink>
+            <NavLink name="dashboard" to="/dashboard">
+              Dashboard
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/profile">Profile</NavLink>
+            <NavLink name="profile" to="/profile">
+              Profile
+            </NavLink>
           </li>
           <li>
             <NavLink onClick={handleSignOut} to="">

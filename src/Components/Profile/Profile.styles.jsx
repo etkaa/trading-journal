@@ -10,6 +10,7 @@ export const ProfileContainer = styled.div`
   background-color: #100f0f;
   border-radius: 10px;
   height: 625px;
+  box-shadow: 0px 10px 15px rgb(114 76 249 / 0.5);
 `;
 
 export const ImageContainer = styled.div`
@@ -20,7 +21,7 @@ export const ImageContainer = styled.div`
   margin: 25px 20px 20px 35px;
   width: 30%;
   background-color: #100720;
-  box-shadow: 3px 3px;
+  box-shadow: 0px 10px 15px rgb(114 76 249 / 0.5);
   color: #3d3c42;
   border-radius: 10px;
   height: 275px;

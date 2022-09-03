@@ -12,6 +12,7 @@ export const StatsContainer = styled.div`
   border-radius: 10px;
   color: white;
   min-height: 250px;
+  box-shadow: 0px 10px 25px rgb(0 0 0 / 0.3);
 
   h3 {
     font-weight: 500;

@@ -35,7 +35,7 @@ const Stats = () => {
     (Number(userStats.sumOfAllTrades) / Number(initialBalance)) * 100;
   const averageRiskReward = Number(userStats.averageRiskReward);
 
-  console.log(userStats);
+  console.log("USE EFFECT RUNS TOO MANY TIMES", userStats);
 
   return (
     <StatsContainer>

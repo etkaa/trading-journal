@@ -11,6 +11,7 @@ export const NavBar = styled.ul`
   padding: 20px 40px;
   justify-content: space-between;
   height: 30px;
+  box-shadow: 0px 2px 20px rgb(0 0 0 / 0.5);
 `;
 
 export const LogoContainer = styled(Link)`
@@ -31,10 +32,12 @@ export const NavLink = styled(Link)`
   color: aliceblue;
   font-size: 1.2rem;
 
-  :hover {
-    color: white;
-    transition: 0.2s;
-    font-weight: 700;
+  :hover,
+  :active,
+  :active {
+    color: #724cf9;
+    transition: 0.2s ease-in-out;
+    font-size: 20px;
   }
 `;
 

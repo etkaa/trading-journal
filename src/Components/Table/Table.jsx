@@ -9,8 +9,9 @@ import { getUserTrades } from "../../Utils/ApiRequests";
 
 const Table = () => {
   const { currentUser, toggler } = useContext(UserContext);
-  const [userTrades, setUserTrades] = useState(null);
+  const [userTrades, setUserTrades] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [sortingOrder, setSortingOrder] = useState(true);
 
   useEffect(() => {
     setLoading(true);
@@ -22,6 +23,36 @@ const Table = () => {
     fetchData();
   }, [currentUser, setUserTrades, toggler]);
 
+  const handleSort = (name, type) => {
+    if (type === "string") {
+      let newUserTrades;
+      if (sortingOrder === true) {
+        newUserTrades = userTrades.sort((a, b) =>
+          a[name] !== b[name] ? (a[name] < b[name] ? -1 : 1) : 0
+        );
+      } else {
+        newUserTrades = userTrades.sort((a, b) =>
+          a[name] !== b[name] ? (a[name] > b[name] ? -1 : 1) : 0
+        );
+      }
+      setUserTrades(newUserTrades);
+      setSortingOrder(!sortingOrder);
+      return;
+    }
+
+    if (name) {
+      let newUserTrades;
+      if (sortingOrder === true) {
+        newUserTrades = userTrades.sort((a, b) => a[name] - b[name]);
+      } else {
+        newUserTrades = userTrades.sort((a, b) => b[name] - a[name]);
+      }
+      setUserTrades(newUserTrades);
+      setSortingOrder(!sortingOrder);
+      return;
+    }
+  };
+
   return (
     <TableContainer>
       <StyledTable>
@@ -29,7 +60,7 @@ const Table = () => {
           <Spinner />
         ) : (
           <Fragment>
-            <TableHead />
+            <TableHead sortHandler={handleSort} />
             {userTrades &&
               userTrades.map((entry) => {
                 return <Entry key={entry._id} entry={entry} />;

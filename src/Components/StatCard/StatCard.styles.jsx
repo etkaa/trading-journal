@@ -14,6 +14,7 @@ export const CardContainer = styled.div`
     rgba(0, 0, 0, 1) 25%,
     rgba(177, 96, 217, 1) 100%
   ); */
+  box-shadow: 0px 4px 15px rgb(114 76 249 / 0.6);
   height: 220px;
   margin: 20px;
   width: 20%;

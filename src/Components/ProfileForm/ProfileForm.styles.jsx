@@ -17,6 +17,7 @@ export const StyledForm = styled.form`
   label {
     color: white;
   }
+  box-shadow: 0px 10px 15px rgb(114 76 249 / 0.3);
 `;
 
 export const InputDiv = styled.div`
@@ -26,6 +27,7 @@ export const InputDiv = styled.div`
   text-align: left;
   width: 100%;
   height: 70px;
+  padding: 5px;
 
   label {
     margin-left: 20px;
@@ -40,12 +42,12 @@ export const ProfileInfoInput = styled.input`
   color: gray;
 
   outline: none;
-  box-shadow: none;
   border: none;
   border-radius: 5px;
   padding: 5px;
   font-size: 15px;
   padding-left: 15px;
+  box-shadow: 0px 5px 10px rgb(255 255 255 / 0.2);
 
   :focus {
     color: white;
