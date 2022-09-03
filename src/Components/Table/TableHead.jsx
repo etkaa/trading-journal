@@ -10,9 +10,9 @@ const TableHead = () => {
       <TableHeadItem>Open</TableHeadItem>
       <TableHeadItem>Close</TableHeadItem>
       <TableHeadItem>Volume</TableHeadItem>
-      <TableHeadItem>Outcome</TableHeadItem>
       <TableHeadItem>Risk/Reward</TableHeadItem>
       <TableHeadItem>P/L ($)</TableHeadItem>
+      <TableHeadItem>Outcome</TableHeadItem>
       <TableHeadItem>Details</TableHeadItem>
     </tr>
   );

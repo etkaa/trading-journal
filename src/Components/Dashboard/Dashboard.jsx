@@ -15,8 +15,8 @@ const Dashboard = () => {
     <Fragment>
       <Navigation />
       <Stats />
-      <Table />
       <DataForm />
+      <Table />
     </Fragment>
   );
 };

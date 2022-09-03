@@ -15,7 +15,6 @@ const defaultDataFormFields = {
   open: "",
   close: "",
   volume: "",
-  outcome: "",
   riskReward: "",
   pAndL: "",
 };
@@ -23,18 +22,23 @@ const defaultDataFormFields = {
 const DataForm = () => {
   const { currentUser, setToggler, toggler } = useContext(UserContext);
   const [dataFormFields, setDataFormFields] = useState(defaultDataFormFields);
-  const { pair, date, time, open, close, volume, outcome, riskReward, pAndL } =
+  const { pair, date, time, open, close, volume, riskReward, pAndL } =
     dataFormFields;
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    var { name, value } = event.target;
+
+    // if (name === "date") {
+    //   value = formatDate(value);
+    // }
 
     setDataFormFields({ ...dataFormFields, [name]: value });
+    console.log(dataFormFields);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    console.log(dataFormFields);
     const userId = currentUser._id;
     const result = await updateUserTrades(userId, dataFormFields);
     if (result === true) {
@@ -45,6 +49,15 @@ const DataForm = () => {
     setDataFormFields(defaultDataFormFields);
   };
 
+  // const formatDate = (date) => {
+  //   const dateElements = date.split("-");
+  //   const year = dateElements[0];
+  //   const month = dateElements[1];
+  //   const day = dateElements[2];
+  //   const newDate = [month, day, year];
+  //   return newDate.join("-");
+  // };
+
   return (
     <FormContainer>
       <StyledForm onSubmit={handleSubmit}>
@@ -54,12 +67,13 @@ const DataForm = () => {
           onChange={handleChange}
           name="pair"
           value={pair}
+          u
           required
           autoComplete="off"
         />
         <FormInput
           placeholder="Date"
-          type="text"
+          type="date"
           onChange={handleChange}
           name="date"
           value={date}
@@ -68,7 +82,7 @@ const DataForm = () => {
         />
         <FormInput
           placeholder="Time"
-          type="text"
+          type="time"
           onChange={handleChange}
           name="time"
           value={time}
@@ -77,7 +91,7 @@ const DataForm = () => {
         />
         <FormInput
           placeholder="Open"
-          type="text"
+          type="number"
           onChange={handleChange}
           name="open"
           value={open}
@@ -86,7 +100,7 @@ const DataForm = () => {
         />
         <FormInput
           placeholder="Close"
-          type="text"
+          type="number"
           onChange={handleChange}
           name="close"
           value={close}
@@ -95,7 +109,7 @@ const DataForm = () => {
         />
         <FormInput
           placeholder="Volume"
-          type="text"
+          type="number"
           onChange={handleChange}
           name="volume"
           value={volume}
@@ -103,17 +117,8 @@ const DataForm = () => {
           autoComplete="off"
         />
         <FormInput
-          placeholder="Outcome"
-          type="text"
-          onChange={handleChange}
-          name="outcome"
-          value={outcome}
-          required
-          autoComplete="off"
-        />
-        <FormInput
           placeholder="Risk/Reward"
-          type="text"
+          type="number"
           onChange={handleChange}
           name="riskReward"
           value={riskReward}
@@ -122,7 +127,7 @@ const DataForm = () => {
         />
         <FormInput
           placeholder="P/L($)"
-          type="text"
+          type="number"
           onChange={handleChange}
           name="pAndL"
           value={pAndL}

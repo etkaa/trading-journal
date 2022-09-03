@@ -9,7 +9,7 @@ const defaultUserStats = {
   currentPandL: "0",
   currentBalance: "0",
   winLossRatio: "0",
-  averageRiskReward: "Calculating",
+  averageRiskReward: "0",
 };
 
 const Stats = () => {
@@ -33,7 +33,7 @@ const Stats = () => {
   const winLossRatio = Number(userStats.winLossRatio);
   const currentPandL =
     (Number(userStats.sumOfAllTrades) / Number(initialBalance)) * 100;
-  const averageRiskReward = userStats.averageRiskReward;
+  const averageRiskReward = Number(userStats.averageRiskReward);
 
   console.log(userStats);
 
@@ -60,7 +60,7 @@ const Stats = () => {
           />
           <StatCard
             statTitle={"Average Risk/Reward"}
-            stat={averageRiskReward}
+            stat={`${averageRiskReward.toFixed(2)}`}
             statDetail={"All Times"}
           />
         </Fragment>

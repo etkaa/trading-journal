@@ -11,6 +11,28 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  input[type="date"] {
+    padding: 1px 4px;
+    color: gray;
+    font-size: 18px;
+  }
+  input[type="time"] {
+    padding: 1px 4px;
+    color: gray;
+    font-size: 18px;
+  }
 `;
 
 export const FormInput = styled.input`
