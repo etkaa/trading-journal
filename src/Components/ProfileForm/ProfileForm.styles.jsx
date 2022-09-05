@@ -7,7 +7,7 @@ export const StyledForm = styled.form`
   align-items: center;
   margin: 0px auto;
   width: 90%;
-  height: 550px;
+  height: 650px;
   background-color: #100720;
   padding: 10px 5px;
   border-radius: 10px;
@@ -18,6 +18,17 @@ export const StyledForm = styled.form`
     color: white;
   }
   box-shadow: 0px 10px 15px rgb(114 76 249 / 0.3);
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 `;
 
 export const InputDiv = styled.div`
@@ -39,20 +50,31 @@ export const ProfileInfoInput = styled.input`
   height: 50px;
   margin: 5px auto;
   background-color: #2c3333;
-  color: gray;
+  color: #dee2e6;
 
   outline: none;
   border: none;
   border-radius: 5px;
-  padding: 5px;
-  font-size: 15px;
-  padding-left: 15px;
+  padding: 5px 15px;
+  font-size: 16px;
   box-shadow: 0px 5px 10px rgb(255 255 255 / 0.2);
 
   :focus {
     color: white;
     box-shadow: 1px 1px;
+    transition: 0.2s;
   }
+
+  &.emailField {
+    color: gray;
+  }
+`;
+
+export const ButtonDiv = styled.div`
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 10px;
 `;
 
 export const Button = styled.button`
@@ -78,6 +100,15 @@ export const Button = styled.button`
     cursor: default;
     :hover {
       color: white;
+    }
+  }
+
+  &.cancel {
+    background-color: #d62840;
+    :hover {
+      background-color: white;
+      color: black;
+      transition: ease-in 50ms;
     }
   }
 `;

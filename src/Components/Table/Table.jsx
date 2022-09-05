@@ -8,7 +8,7 @@ import { UserContext } from "../../Context/User.Context";
 import { getUserTrades } from "../../Utils/ApiRequests";
 
 const Table = () => {
-  const { currentUser, toggler } = useContext(UserContext);
+  const { currentUserID, toggler } = useContext(UserContext);
   const [userTrades, setUserTrades] = useState([]);
   const [loading, setLoading] = useState(false);
   const [sortingOrder, setSortingOrder] = useState(true);
@@ -16,12 +16,12 @@ const Table = () => {
   useEffect(() => {
     setLoading(true);
     const fetchData = async () => {
-      const allTrades = await getUserTrades(currentUser);
+      const allTrades = await getUserTrades(currentUserID);
       setLoading(false);
       setUserTrades(allTrades);
     };
     fetchData();
-  }, [currentUser, setUserTrades, toggler]);
+  }, [currentUserID, setUserTrades, toggler]);
 
   const handleSort = (name, type) => {
     if (type === "string") {

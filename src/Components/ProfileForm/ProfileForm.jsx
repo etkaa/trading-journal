@@ -8,6 +8,7 @@ import {
   StyledForm,
   InputDiv,
   ProfileInfoInput,
+  ButtonDiv,
   Button,
 } from "./ProfileForm.styles";
 
@@ -16,25 +17,31 @@ const defaultProfileFields = {
   email: "",
   initialBalance: "",
   brokerName: "",
+  profileImageUrl: "",
 };
 
-const ProfileForm = () => {
-  const { currentUser } = useContext(UserContext);
+const ProfileForm = ({ onImageChange }) => {
+  const { currentUserID, toggler, setToggler } = useContext(UserContext);
   const [profileFormFields, setProfileFormFields] =
     useState(defaultProfileFields);
   const [edited, setEdited] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { fullName, email, initialBalance, brokerName } = profileFormFields;
+  const { fullName, email, initialBalance, brokerName, profileImageUrl } =
+    profileFormFields;
+  const [uneditedProfileFields, setUnEditedProfileFields] =
+    useState(profileFormFields);
 
   useEffect(() => {
     setLoading(true);
     const fetchData = async () => {
-      const userProfileFields = await getUserProfileFields(currentUser._id);
+      const userProfileFields = await getUserProfileFields(currentUserID);
       setLoading(false);
       setProfileFormFields(userProfileFields);
+      setUnEditedProfileFields(userProfileFields);
+      onImageChange(userProfileFields.profileImageUrl || null);
     };
     fetchData();
-  }, [currentUser]);
+  }, [currentUserID, setUnEditedProfileFields, onImageChange, toggler]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -45,14 +52,19 @@ const ProfileForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const result = await updateUserProfileFields(
-      currentUser._id,
+      currentUserID,
       profileFormFields
     );
     if (result === true) {
-      alert("Successfully updated!");
+      setToggler(!toggler);
     } else {
-      console.log("not success");
+      alert("There was a problem, please try again.");
     }
+    setEdited(false);
+  };
+
+  const cancelHandler = () => {
+    setProfileFormFields(uneditedProfileFields);
     setEdited(false);
   };
 
@@ -78,6 +90,8 @@ const ProfileForm = () => {
             <label>E-Mail Address</label>
             <ProfileInfoInput
               placeholder="'Email'"
+              title="Can't change"
+              className="emailField"
               type="text"
               onChange={handleChange}
               name="email"
@@ -91,7 +105,7 @@ const ProfileForm = () => {
             <label>Initial Balance</label>
             <ProfileInfoInput
               placeholder="'Initial Balance'"
-              type="string"
+              type="number"
               onChange={handleChange}
               name="initialBalance"
               value={initialBalance}
@@ -109,9 +123,28 @@ const ProfileForm = () => {
               autoComplete="off"
             />
           </InputDiv>
-          <Button type="submit" disabled={!edited}>
-            Update Profile
-          </Button>
+          <InputDiv>
+            <label>Profile Image URL</label>
+            <ProfileInfoInput
+              placeholder="'http://example.com/profile/picture'"
+              type="text"
+              onChange={handleChange}
+              name="profileImageUrl"
+              value={profileImageUrl}
+              autoComplete="off"
+              className="urlField"
+            />
+          </InputDiv>
+          <ButtonDiv>
+            <Button type="submit" disabled={!edited}>
+              Update
+            </Button>
+            {edited && (
+              <Button type="button" onClick={cancelHandler} className="cancel">
+                Cancel
+              </Button>
+            )}
+          </ButtonDiv>
         </StyledForm>
       )}
     </Fragment>

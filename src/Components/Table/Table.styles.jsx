@@ -18,6 +18,7 @@ export const StyledTable = styled.table`
   margin: 5px 5px;
   font-size: 20px;
   font-weight: 300;
+  display: inline-table;
 
   tr:nth-child(even) {
     background-color: #2c3333;

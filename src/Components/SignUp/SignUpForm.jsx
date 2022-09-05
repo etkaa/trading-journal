@@ -22,7 +22,7 @@ const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const [errorMessage, setErrorMessage] = useState(null);
   const { name, username, password } = formFields;
-  const { setCurrentUser } = useContext(UserContext);
+  const { setCurrentUserID, setIsAuthenticated } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleChange = (event) => {
@@ -51,7 +51,12 @@ const SignUpForm = () => {
       .then((response) => {
         console.log("response.data:", response.data);
         if (response.data.success === true) {
-          setCurrentUser(response.data.user);
+          setCurrentUserID(response.data.user._id);
+          setIsAuthenticated(true);
+          localStorage.setItem(
+            "userID",
+            JSON.stringify(response.data.user._id)
+          );
           navigate("/dashboard");
         } else {
           setErrorMessage(response.data.message);

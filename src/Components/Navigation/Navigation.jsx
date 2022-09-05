@@ -1,6 +1,6 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import axios from "axios";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ReactComponent as CrwnLogo } from "../../Assets/crown.svg";
 import {
   NavBar,
@@ -11,7 +11,7 @@ import {
 import { UserContext } from "../../Context/User.Context";
 
 const Navigation = () => {
-  const { setCurrentUser } = useContext(UserContext);
+  const { setCurrentUserID, setIsAuthenticated } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
@@ -23,7 +23,9 @@ const Navigation = () => {
       })
       .then(function (response) {
         if (response.data.success === true) {
-          setCurrentUser(null);
+          setCurrentUserID(null);
+          setIsAuthenticated(false);
+          localStorage.removeItem("userID");
           navigate("/signin");
         }
       })
@@ -31,7 +33,27 @@ const Navigation = () => {
         console.log(error);
       });
 
-    localStorage.removeItem("userSession");
+    // localStorage.removeItem("userSession");
+  };
+
+  const handleClick = async (event) => {
+    event.preventDefault();
+
+    await axios
+      .get(`http://localhost:8000/auth/status`, {
+        headers: {
+          "content-type": "application/json",
+        },
+        withCredentials: true,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -40,6 +62,9 @@ const Navigation = () => {
         <LogoContainer to="/dashboard">
           <CrwnLogo className="logo" />
         </LogoContainer>
+        <button type="button" onClick={handleClick}>
+          CLICK
+        </button>
         <LinksContainer>
           <li>
             <NavLink name="dashboard" to="/dashboard">

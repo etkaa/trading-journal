@@ -41,6 +41,7 @@ export const updateUserProfileFields = async (userID, newFormFields) => {
         email: newFormFields.email,
         initialBalance: newFormFields.initialBalance,
         brokerName: newFormFields.brokerName,
+        profileImageUrl: newFormFields.profileImageUrl,
       },
       {
         headers: {
@@ -73,7 +74,7 @@ export const getUserProfileFields = async (userID) => {
     })
     .then((response) => {
       if (response.status === 200) {
-        userProfileFields = response.data;
+        userProfileFields = response.data.profileFields;
       }
     })
     .catch((error) => {
@@ -83,11 +84,11 @@ export const getUserProfileFields = async (userID) => {
   return userProfileFields;
 };
 
-export const getUserTrades = async (currentUser) => {
+export const getUserTrades = async (currentUserID) => {
   let userTrades;
 
   await axios
-    .get(`http://localhost:8000/user/trades/${currentUser._id}`, {
+    .get(`http://localhost:8000/user/trades/${currentUserID}`, {
       headers: {
         "content-type": "application/json",
       },

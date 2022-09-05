@@ -20,7 +20,7 @@ const defaultDataFormFields = {
 };
 
 const DataForm = () => {
-  const { currentUser, setToggler, toggler } = useContext(UserContext);
+  const { currentUserID, setToggler, toggler } = useContext(UserContext);
   const [dataFormFields, setDataFormFields] = useState(defaultDataFormFields);
   const { pair, date, time, open, close, volume, riskReward, pAndL } =
     dataFormFields;
@@ -28,18 +28,12 @@ const DataForm = () => {
   const handleChange = (event) => {
     var { name, value } = event.target;
 
-    // if (name === "date") {
-    //   value = formatDate(value);
-    // }
-
     setDataFormFields({ ...dataFormFields, [name]: value });
-    console.log(dataFormFields);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(dataFormFields);
-    const userId = currentUser._id;
+    const userId = currentUserID;
     const result = await updateUserTrades(userId, dataFormFields);
     if (result === true) {
       setToggler(!toggler);
@@ -48,15 +42,6 @@ const DataForm = () => {
     }
     setDataFormFields(defaultDataFormFields);
   };
-
-  // const formatDate = (date) => {
-  //   const dateElements = date.split("-");
-  //   const year = dateElements[0];
-  //   const month = dateElements[1];
-  //   const day = dateElements[2];
-  //   const newDate = [month, day, year];
-  //   return newDate.join("-");
-  // };
 
   return (
     <FormContainer>

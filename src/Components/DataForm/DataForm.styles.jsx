@@ -8,6 +8,20 @@ export const FormContainer = styled.div`
   box-shadow: 0px 10px 25px rgb(0 0 0 / 0.3);
 `;
 
+// export const FirstTradeHeaderContainer = styled.div`
+//   text-align: center;
+//   color: #724cf9;
+//   padding: 10px;
+//   border: 1px solid;
+//   border-radius: 10px;
+
+//   p {
+//     font-size: 25px;
+//     font-weight: 500;
+//     margin: 10px 10px;
+//   }
+// `;
+
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: row;

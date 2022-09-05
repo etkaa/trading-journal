@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 export const StatsContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr 2fr;
+  column-gap: 20px;
+  /* flex-direction: c; */
+  /* justify-content: space-between; */
   text-align: center;
   margin: 20px auto 50px auto;
   width: 80%;

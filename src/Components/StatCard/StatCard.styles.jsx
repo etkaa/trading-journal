@@ -17,7 +17,7 @@ export const CardContainer = styled.div`
   box-shadow: 0px 4px 15px rgb(114 76 249 / 0.6);
   height: 220px;
   margin: 20px;
-  width: 20%;
+  width: 80%;
   border-radius: 10px;
 
   h2 {
@@ -26,6 +26,7 @@ export const CardContainer = styled.div`
 
   h5 {
     font-weight: 300;
+    font-size: 15px;
   }
 `;
 

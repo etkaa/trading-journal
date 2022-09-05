@@ -21,7 +21,7 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const [error, setError] = useState(false);
   const { username, password } = formFields;
-  const { setCurrentUser } = useContext(UserContext);
+  const { setCurrentUserID, setIsAuthenticated } = useContext(UserContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/dashboard";
@@ -50,7 +50,9 @@ const SignInForm = () => {
       )
       .then((response) => {
         if (response.data.success === true) {
-          setCurrentUser(response.data.user);
+          setCurrentUserID(response.data.userID);
+          localStorage.setItem("userID", JSON.stringify(response.data.userID));
+          setIsAuthenticated(true);
           navigate(from, { replace: true });
         }
       })
