@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/User.Context";
 import { getUserProfileFields } from "../../Utils/ApiRequests";
 import { updateUserProfileFields } from "../../Utils/ApiRequests";
@@ -21,7 +22,8 @@ const defaultProfileFields = {
 };
 
 const ProfileForm = ({ onImageChange }) => {
-  const { currentUserID, toggler, setToggler } = useContext(UserContext);
+  const { currentUserID, toggler, setToggler, setIsAuthenticated } =
+    useContext(UserContext);
   const [profileFormFields, setProfileFormFields] =
     useState(defaultProfileFields);
   const [edited, setEdited] = useState(false);
@@ -30,18 +32,36 @@ const ProfileForm = ({ onImageChange }) => {
     profileFormFields;
   const [uneditedProfileFields, setUnEditedProfileFields] =
     useState(profileFormFields);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
     const fetchData = async () => {
-      const userProfileFields = await getUserProfileFields(currentUserID);
-      setLoading(false);
-      setProfileFormFields(userProfileFields);
-      setUnEditedProfileFields(userProfileFields);
-      onImageChange(userProfileFields.profileImageUrl || null);
+      await getUserProfileFields(currentUserID)
+        .then((response) => {
+          setLoading(false);
+          setProfileFormFields(response);
+          setUnEditedProfileFields(response);
+          onImageChange(response.profileImageUrl || null);
+        })
+        .catch((error) => {
+          const err = JSON.parse(error.message);
+          if (err.status === "401") {
+            setIsAuthenticated(false);
+            navigate("/signin");
+          }
+          console.log(error);
+        });
     };
     fetchData();
-  }, [currentUserID, setUnEditedProfileFields, onImageChange, toggler]);
+  }, [
+    currentUserID,
+    setUnEditedProfileFields,
+    onImageChange,
+    toggler,
+    setIsAuthenticated,
+    navigate,
+  ]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

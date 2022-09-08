@@ -46,17 +46,14 @@ const SignUpForm = () => {
           headers: {
             "content-type": "application/json",
           },
-        }
+        },
+        { withCredentials: true }
       )
       .then((response) => {
         console.log("response.data:", response.data);
         if (response.data.success === true) {
           setCurrentUserID(response.data.user._id);
           setIsAuthenticated(true);
-          localStorage.setItem(
-            "userID",
-            JSON.stringify(response.data.user._id)
-          );
           navigate("/dashboard");
         } else {
           setErrorMessage(response.data.message);

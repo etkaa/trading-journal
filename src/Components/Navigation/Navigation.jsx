@@ -17,6 +17,7 @@ const Navigation = () => {
   const handleSignOut = async () => {
     await axios
       .get("http://localhost:8000/auth/logout", {
+        withCredentials: true,
         headers: {
           "content-type": "application/json",
         },
@@ -25,7 +26,6 @@ const Navigation = () => {
         if (response.data.success === true) {
           setCurrentUserID(null);
           setIsAuthenticated(false);
-          localStorage.removeItem("userID");
           navigate("/signin");
         }
       })
@@ -36,35 +36,12 @@ const Navigation = () => {
     // localStorage.removeItem("userSession");
   };
 
-  const handleClick = async (event) => {
-    event.preventDefault();
-
-    await axios
-      .get(`http://localhost:8000/auth/status`, {
-        headers: {
-          "content-type": "application/json",
-        },
-        withCredentials: true,
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          console.log(response.data);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   return (
     <div>
       <NavBar>
         <LogoContainer to="/dashboard">
           <CrwnLogo className="logo" />
         </LogoContainer>
-        <button type="button" onClick={handleClick}>
-          CLICK
-        </button>
         <LinksContainer>
           <li>
             <NavLink name="dashboard" to="/dashboard">

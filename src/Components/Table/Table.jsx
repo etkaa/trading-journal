@@ -6,22 +6,35 @@ import Entry from "../Entry/Entry";
 import Spinner from "../Spinner/Spinner";
 import { UserContext } from "../../Context/User.Context";
 import { getUserTrades } from "../../Utils/ApiRequests";
+import { useNavigate } from "react-router-dom";
 
 const Table = () => {
-  const { currentUserID, toggler } = useContext(UserContext);
+  const { currentUserID, toggler, setIsAuthenticated } =
+    useContext(UserContext);
   const [userTrades, setUserTrades] = useState([]);
   const [loading, setLoading] = useState(false);
   const [sortingOrder, setSortingOrder] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
     const fetchData = async () => {
-      const allTrades = await getUserTrades(currentUserID);
-      setLoading(false);
-      setUserTrades(allTrades);
+      await getUserTrades(currentUserID)
+        .then((response) => {
+          setLoading(false);
+          setUserTrades(response);
+        })
+        .catch((error) => {
+          const err = JSON.parse(error.message);
+          if (err.status === "401") {
+            setIsAuthenticated(false);
+            navigate("/signin");
+          }
+          console.log(error);
+        });
     };
     fetchData();
-  }, [currentUserID, setUserTrades, toggler]);
+  }, [currentUserID, setUserTrades, toggler, navigate, setIsAuthenticated]);
 
   const handleSort = (name, type) => {
     if (type === "string") {

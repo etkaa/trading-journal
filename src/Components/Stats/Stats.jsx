@@ -4,6 +4,7 @@ import { StatsContainer } from "./Stats.styles";
 import StatCard from "../StatCard/StatCard";
 import { getUserStats, getUserProfileFields } from "../../Utils/ApiRequests";
 import Spinner from "../Spinner/Spinner";
+import { useNavigate } from "react-router-dom";
 
 const defaultUserStats = {
   currentPandL: "0",
@@ -20,28 +21,57 @@ const defaultUserProfileFields = {
 };
 
 const Stats = () => {
-  const { currentUserID, toggler } = useContext(UserContext);
+  const { currentUserID, toggler, setIsAuthenticated } =
+    useContext(UserContext);
   const [userStats, setUserStats] = useState(defaultUserStats);
   const [userProfileFields, setUserProfileFields] = useState(
     defaultUserProfileFields
   );
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
     const fetchStatsData = async () => {
-      const allStats = await getUserStats(currentUserID);
-      setLoading(false);
-      setUserStats(allStats);
+      await getUserStats(currentUserID)
+        .then((response) => {
+          setLoading(false);
+          setUserStats(response);
+        })
+        .catch((error) => {
+          const err = JSON.parse(error.message);
+          if (err.status === "401") {
+            setIsAuthenticated(false);
+            navigate("/signin");
+          }
+          console.log(error);
+        });
     };
     const fetchProfileData = async () => {
-      const allProfileFields = await getUserProfileFields(currentUserID);
-      setLoading(false);
-      setUserProfileFields(allProfileFields);
+      await getUserProfileFields(currentUserID)
+        .then((response) => {
+          setLoading(false);
+          setUserProfileFields(response);
+        })
+        .catch((error) => {
+          const err = JSON.parse(error.message);
+          if (err.status === "401") {
+            setIsAuthenticated(false);
+            navigate("/signin");
+          }
+          console.log(error);
+        });
     };
     fetchProfileData();
     fetchStatsData();
-  }, [currentUserID, setUserStats, setUserProfileFields, toggler]);
+  }, [
+    currentUserID,
+    setUserStats,
+    setUserProfileFields,
+    toggler,
+    navigate,
+    setIsAuthenticated,
+  ]);
 
   const initialBalance = Number(userProfileFields.initialBalance);
   const currentBalance =

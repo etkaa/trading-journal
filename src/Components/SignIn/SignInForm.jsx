@@ -43,6 +43,7 @@ const SignInForm = () => {
           password: formFields.password,
         },
         {
+          withCredentials: true,
           headers: {
             "content-type": "application/json",
           },
@@ -51,7 +52,6 @@ const SignInForm = () => {
       .then((response) => {
         if (response.data.success === true) {
           setCurrentUserID(response.data.userID);
-          localStorage.setItem("userID", JSON.stringify(response.data.userID));
           setIsAuthenticated(true);
           navigate(from, { replace: true });
         }

@@ -10,6 +10,7 @@ export const updateUserTrades = async (id, newTradeFields) => {
         newTrade: newTradeFields,
       },
       {
+        withCredentials: true,
         headers: {
           "content-type": "application/json",
         },
@@ -23,6 +24,14 @@ export const updateUserTrades = async (id, newTradeFields) => {
       }
     })
     .catch((error) => {
+      if (error.response.status === 401) {
+        throw Error(
+          JSON.stringify({
+            status: "401",
+            message: "Authentication failed, please try signing in.",
+          })
+        );
+      }
       console.log(error);
     });
 
@@ -44,6 +53,7 @@ export const updateUserProfileFields = async (userID, newFormFields) => {
         profileImageUrl: newFormFields.profileImageUrl,
       },
       {
+        withCredentials: true,
         headers: {
           "content-type": "application/json",
         },
@@ -54,9 +64,16 @@ export const updateUserProfileFields = async (userID, newFormFields) => {
         result = true;
         console.log("Update user profile success!");
       }
-      // newUser = response.data.updatedUser;
     })
     .catch((error) => {
+      if (error.response.status === 401) {
+        throw Error(
+          JSON.stringify({
+            status: "401",
+            message: "Authentication failed, please try signing in.",
+          })
+        );
+      }
       console.log(error);
     });
 
@@ -68,6 +85,7 @@ export const getUserProfileFields = async (userID) => {
 
   await axios
     .get(`http://localhost:8000/user/profile/${userID}`, {
+      withCredentials: true,
       headers: {
         "content-type": "application/json",
       },
@@ -78,6 +96,14 @@ export const getUserProfileFields = async (userID) => {
       }
     })
     .catch((error) => {
+      if (error.response.status === 401) {
+        throw Error(
+          JSON.stringify({
+            status: "401",
+            message: "Authentication failed, please try signing in.",
+          })
+        );
+      }
       console.log(error);
     });
 
@@ -89,6 +115,7 @@ export const getUserTrades = async (currentUserID) => {
 
   await axios
     .get(`http://localhost:8000/user/trades/${currentUserID}`, {
+      withCredentials: true,
       headers: {
         "content-type": "application/json",
       },
@@ -99,6 +126,14 @@ export const getUserTrades = async (currentUserID) => {
       }
     })
     .catch((error) => {
+      if (error.response.status === 401) {
+        throw Error(
+          JSON.stringify({
+            status: "401",
+            message: "Authentication failed, please try signing in.",
+          })
+        );
+      }
       console.log(error);
     });
 
@@ -110,6 +145,7 @@ export const getUserStats = async (id) => {
 
   await axios
     .get(`http://localhost:8000/user/stats/${id}`, {
+      withCredentials: true,
       headers: {
         "content-type": "application/json",
       },
@@ -120,8 +156,35 @@ export const getUserStats = async (id) => {
       }
     })
     .catch((error) => {
+      if (error.response.status === 401) {
+        throw Error(
+          JSON.stringify({
+            status: "401",
+            message: "Authentication failed, please try signing in.",
+          })
+        );
+      }
       console.log(error);
     });
 
   return allStats;
+};
+
+export const checkAuth = async () => {
+  let userID;
+
+  await axios
+    .get("http://localhost:8000/auth/status", {
+      withCredentials: true,
+    })
+    .then((response) => {
+      // console.log("response from check auth effect", response);
+      if (response.status === 200) {
+        userID = response.data.user;
+      } else {
+        userID = null;
+      }
+    });
+
+  return userID;
 };

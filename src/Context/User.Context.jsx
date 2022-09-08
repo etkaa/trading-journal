@@ -1,32 +1,36 @@
 import { createContext, useState, useEffect } from "react";
+import { checkAuth } from "../Utils/ApiRequests";
 
 export const UserContext = createContext({
   isAuthenticated: false,
   setIsAuthenticated: () => {},
   currentUserID: null,
   setCurrentUserID: () => {},
+  checkingAuth: false,
+  setCheckingAuth: () => {},
   toggler: false,
   setToggler: () => {},
 });
 
 export const UserProvider = ({ children }) => {
-  console.log("context running");
-
   useEffect(() => {
-    const checkLocalStorage = () => {
-      const storedUser = JSON.parse(localStorage.getItem("userID"));
-      console.log("inside check local storage", storedUser);
-      if (storedUser) {
-        setCurrentUserID(storedUser);
+    const initializeAuth = async () => {
+      // console.log("inside check auth effect");
+      setCheckingAuth(true);
+      const user = await checkAuth();
+      setCheckingAuth(false);
+      if (user !== null) {
+        setCurrentUserID(user);
         setIsAuthenticated(true);
       } else {
         setIsAuthenticated(false);
       }
     };
-    checkLocalStorage();
+    initializeAuth();
   }, []);
 
   const [isAuthenticated, setIsAuthenticated] = useState();
+  const [checkingAuth, setCheckingAuth] = useState();
   const [currentUserID, setCurrentUserID] = useState();
   const [toggler, setToggler] = useState(false);
 
@@ -36,6 +40,8 @@ export const UserProvider = ({ children }) => {
   const value = {
     currentUserID,
     setCurrentUserID,
+    checkingAuth,
+    setCheckingAuth,
     isAuthenticated,
     setIsAuthenticated,
     toggler,
