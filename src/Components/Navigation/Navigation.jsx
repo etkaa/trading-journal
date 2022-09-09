@@ -16,7 +16,7 @@ const Navigation = () => {
 
   const handleSignOut = async () => {
     await axios
-      .get(`${process.env.API_URL}/auth/logout`, {
+      .get(`${process.env.REACT_APP_API_URL}/auth/logout`, {
         withCredentials: true,
         headers: {
           "content-type": "application/json",
