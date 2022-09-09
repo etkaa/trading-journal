@@ -4,7 +4,7 @@ export const updateUserTrades = async (id, newTradeFields) => {
   let result;
   await axios
     .post(
-      "http://localhost:8000/user/update/trades",
+      `${process.env.API_URL}/user/update/trades`,
       {
         userID: id,
         newTrade: newTradeFields,
@@ -43,7 +43,7 @@ export const updateUserProfileFields = async (userID, newFormFields) => {
 
   await axios
     .post(
-      "http://localhost:8000/user/update/profile",
+      `${process.env.API_URL}/user/update/profile`,
       {
         userID: userID,
         fullName: newFormFields.fullName,
@@ -84,7 +84,7 @@ export const getUserProfileFields = async (userID) => {
   let userProfileFields;
 
   await axios
-    .get(`http://localhost:8000/user/profile/${userID}`, {
+    .get(`${process.env.API_URL}/user/profile/${userID}`, {
       withCredentials: true,
       headers: {
         "content-type": "application/json",
@@ -114,7 +114,7 @@ export const getUserTrades = async (currentUserID) => {
   let userTrades;
 
   await axios
-    .get(`http://localhost:8000/user/trades/${currentUserID}`, {
+    .get(`${process.env.API_URL}/user/trades/${currentUserID}`, {
       withCredentials: true,
       headers: {
         "content-type": "application/json",
@@ -144,7 +144,7 @@ export const getUserStats = async (id) => {
   let allStats;
 
   await axios
-    .get(`http://localhost:8000/user/stats/${id}`, {
+    .get(`${process.env.API_URL}/user/stats/${id}`, {
       withCredentials: true,
       headers: {
         "content-type": "application/json",
@@ -174,16 +174,24 @@ export const checkAuth = async () => {
   let userID;
 
   await axios
-    .get("http://localhost:8000/auth/status", {
+    .get(`${process.env.API_URL}/auth/status`, {
       withCredentials: true,
     })
     .then((response) => {
-      // console.log("response from check auth effect", response);
       if (response.status === 200) {
         userID = response.data.user;
-      } else {
-        userID = null;
       }
+    })
+    .catch((error) => {
+      if (error.response.status === 401) {
+        throw Error(
+          JSON.stringify({
+            status: "401",
+            message: "Authentication failed, please try signing in.",
+          })
+        );
+      }
+      console.log(error);
     });
 
   return userID;

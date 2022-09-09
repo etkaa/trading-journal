@@ -17,14 +17,21 @@ export const UserProvider = ({ children }) => {
     const initializeAuth = async () => {
       // console.log("inside check auth effect");
       setCheckingAuth(true);
-      const user = await checkAuth();
-      setCheckingAuth(false);
-      if (user !== null) {
-        setCurrentUserID(user);
-        setIsAuthenticated(true);
-      } else {
-        setIsAuthenticated(false);
-      }
+      await checkAuth()
+        .then((response) => {
+          setCheckingAuth(false);
+          setCurrentUserID(response);
+          setIsAuthenticated(true);
+        })
+        .catch((error) => {
+          const err = JSON.parse(error.message);
+          if (err.status === "401") {
+            setCheckingAuth(false);
+            setIsAuthenticated(false);
+          } else {
+            console.log(error);
+          }
+        });
     };
     initializeAuth();
   }, []);

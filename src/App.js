@@ -15,8 +15,8 @@ const App = () => {
 
   return (
     <Routes>
-      <Route path="/home" element={<Home />} />
       <Route element={<NotRequireAuth />}>
+        <Route path="/home" element={checkingAuth ? <Spinner /> : <Home />} />
         <Route
           path="/signin"
           element={checkingAuth ? <Spinner /> : <SignInForm />}

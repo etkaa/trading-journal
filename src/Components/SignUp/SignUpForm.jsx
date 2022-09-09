@@ -35,7 +35,7 @@ const SignUpForm = () => {
 
     await axios
       .post(
-        "http://localhost:8000/auth/signup",
+        `${process.env.API_URL}/auth/signup`,
         {
           fullName: formFields.name,
           username: formFields.username,
