@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Navigation from "../Navigation/Navigation";
 import Stats from "../Stats/Stats";
 import Table from "../Table/Table";
 import DataForm from "../DataForm/DataForm";
-import { TopContainer, MainContainer } from "./Dashboard.styles";
+import { TopContainer, MainContainer, DashboardBody } from "./Dashboard.styles";
 // import { useContext } from "react";
 // import { UserContext } from "../../Context/User.Context";
 
@@ -13,7 +13,7 @@ const Dashboard = () => {
   // const userTrades = currentUser.userTrades;
 
   return (
-    <Fragment>
+    <DashboardBody>
       <Navigation />
       <MainContainer>
         <TopContainer>
@@ -22,7 +22,7 @@ const Dashboard = () => {
           <Table />
         </TopContainer>
       </MainContainer>
-    </Fragment>
+    </DashboardBody>
   );
 };
 

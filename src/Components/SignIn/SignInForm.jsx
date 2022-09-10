@@ -9,6 +9,7 @@ import {
   FormFields,
   Button,
   ErrorLabel,
+  SignInBody,
 } from "./SignInForm.styles";
 import { UserContext } from "../../Context/User.Context";
 
@@ -65,43 +66,45 @@ const SignInForm = () => {
   };
 
   return (
-    <Wrapper>
-      <h2>Sign In</h2>
-      <Form onSubmit={handleSubmit}>
-        <FormFields>
-          <label>Email</label>
-          <Input
-            type="email"
-            onChange={handleChange}
-            name="username"
-            value={username}
-            autoFocus
-            required
-          />
-          <label>Password</label>
-          <Input
-            type="password"
-            onChange={handleChange}
-            name="password"
-            value={password}
-            required
-          />
-        </FormFields>
-        {error && (
-          <ErrorLabel>Please check your credentials and try again!</ErrorLabel>
-        )}
-        <Button type="submit">Sign In</Button>
-        <p> OR </p>
-        <Button type="button">Continue with Google</Button>
-      </Form>
-      <br />
-      <h3>Don't have an account?</h3>
-      <h3>
-        <Link to="/signup">Sign Up</Link> here.
+    <SignInBody>
+      <Wrapper>
+        <h2>Sign In</h2>
+        <Form onSubmit={handleSubmit}>
+          <FormFields>
+            <label>Email</label>
+            <Input
+              type="email"
+              onChange={handleChange}
+              name="username"
+              value={username}
+              autoFocus
+              required
+            />
+            <label>Password</label>
+            <Input
+              type="password"
+              onChange={handleChange}
+              name="password"
+              value={password}
+              required
+            />
+          </FormFields>
+          {error && (
+            <ErrorLabel>
+              Please check your credentials and try again!
+            </ErrorLabel>
+          )}
+          <Button type="submit">Sign In</Button>
+          <p> OR </p>
+          <Button type="button">Continue with Google</Button>
+        </Form>
         <br />
-        <Link to="/dashboard">Dashboard</Link> here.
-      </h3>
-    </Wrapper>
+        <h3>Don't have an account?</h3>
+        <h3>
+          <Link to="/signup">Sign Up</Link> here.
+        </h3>
+      </Wrapper>
+    </SignInBody>
   );
 };
 

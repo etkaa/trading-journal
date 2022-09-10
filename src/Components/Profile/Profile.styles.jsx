@@ -1,5 +1,17 @@
 import styled from "styled-components";
 
+export const ProfileBody = styled.body`
+  /* background-color: #100720; */
+  background: linear-gradient(
+    120deg,
+    rgba(177, 96, 217, 0.6) 25%,
+    rgba(13, 79, 171, 0.6) 50%,
+    rgba(0, 0, 0, 0.6) 90%
+  );
+  height: 100vh;
+  overflow: hidden;
+`;
+
 export const ProfileContainer = styled.div`
   display: flex;
   justify-content: space-between;

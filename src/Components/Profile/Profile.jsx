@@ -6,6 +6,7 @@ import {
   ImageContainer,
   ProfilePicture,
   FormContainer,
+  ProfileBody,
 } from "./Profile.styles";
 
 const Profile = () => {
@@ -24,17 +25,19 @@ const Profile = () => {
 
   return (
     <Fragment>
-      <Navigation />
-      <ProfileContainer>
-        <ImageContainer>
-          <ProfilePicture>
-            <img alt={""} src={imageAddress} />
-          </ProfilePicture>
-        </ImageContainer>
-        <FormContainer>
-          <ProfileForm onImageChange={handleImageChange} />
-        </FormContainer>
-      </ProfileContainer>
+      <ProfileBody>
+        <Navigation />
+        <ProfileContainer>
+          <ImageContainer>
+            <ProfilePicture>
+              <img alt={""} src={imageAddress} />
+            </ProfilePicture>
+          </ImageContainer>
+          <FormContainer>
+            <ProfileForm onImageChange={handleImageChange} />
+          </FormContainer>
+        </ProfileContainer>
+      </ProfileBody>
     </Fragment>
   );
 };

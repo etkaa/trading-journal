@@ -26,7 +26,7 @@ const Navigation = () => {
         if (response.data.success === true) {
           setCurrentUserID(null);
           setIsAuthenticated(false);
-          navigate("/signin");
+          navigate("/home");
         }
       })
       .catch(function (error) {

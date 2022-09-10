@@ -1,5 +1,7 @@
 body {
   margin: 0;
+  padding: 0;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.829);
 
   background-size: 5px 100%;
@@ -13,4 +15,14 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }

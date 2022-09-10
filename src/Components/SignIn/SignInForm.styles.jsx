@@ -1,15 +1,43 @@
 import styled from "styled-components";
 
+export const SignInBody = styled.body`
+  /* background-color: #100720; */
+  background: linear-gradient(
+    120deg,
+    rgba(0, 0, 0, 0.6) 25%,
+    rgba(177, 96, 217, 0.6) 50%,
+    rgba(13, 79, 171, 0.6) 90%
+  );
+  height: 100vh;
+  overflow: hidden;
+`;
+
 export const Wrapper = styled.div`
   color: white;
   margin: 150px auto;
   display: flex;
   flex-direction: column;
-  max-width: 20%;
+  max-width: 30%;
   align-items: center;
   background: white;
   border-radius: 10px;
   background: #9772fb;
+
+  @media screen and (max-width: 700px) {
+    max-width: 85%;
+  }
+
+  @media screen and (max-width: 900px) and (min-width: 700px) {
+    max-width: 50%;
+  }
+
+  @media screen and (max-width: 1200px) and (min-width: 900px) {
+    max-width: 30%;
+  }
+
+  @media screen and (min-width: 900px) {
+    max-width: 20%;
+  }
 
   a {
     font-weight: 600;
@@ -18,6 +46,7 @@ export const Wrapper = styled.div`
 
     :hover {
       color: black;
+      transition: 200ms;
     }
   }
 

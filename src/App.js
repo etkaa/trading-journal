@@ -3,10 +3,11 @@ import SignInForm from "./Components/SignIn/SignInForm";
 import SignUpForm from "./Components/SignUp/SignUpForm";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Profile from "./Components/Profile/Profile";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import RequireAuth from "./Components/RequireAuth/RequireAuth";
 import NotRequireAuth from "./Components/RequireAuth/NotRequireAuth";
 import Spinner from "./Components/Spinner/Spinner";
+import NotFound from "./Components/NotFound/NotFound";
 import { useContext } from "react";
 import { UserContext } from "./Context/User.Context";
 
@@ -16,6 +17,7 @@ const App = () => {
   return (
     <Routes>
       <Route element={<NotRequireAuth />}>
+        <Route path="/" element={checkingAuth ? <Spinner /> : <Home />} />
         <Route path="/home" element={checkingAuth ? <Spinner /> : <Home />} />
         <Route
           path="/signin"
@@ -37,7 +39,7 @@ const App = () => {
         />
       </Route>
 
-      <Route path="*" element={<Navigate to="/home" replace />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

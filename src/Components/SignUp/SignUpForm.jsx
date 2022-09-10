@@ -10,6 +10,7 @@ import {
   FormFields,
   Button,
   ErrorLabel,
+  SignUpBody,
 } from "./SignUpForm.styles";
 
 const defaultFormFields = {
@@ -67,48 +68,50 @@ const SignUpForm = () => {
   };
 
   return (
-    <Wrapper>
-      <h2>Create Account</h2>
-      <Form onSubmit={handleSubmit}>
-        <FormFields>
-          <label>Name</label>
-          <Input
-            type="text"
-            onChange={handleChange}
-            name="name"
-            value={name}
-            autoFocus
-            required
-          />
-          <label>Email</label>
-          <Input
-            type="email"
-            onChange={handleChange}
-            name="username"
-            value={username}
-            required
-          />
-          <label>Password</label>
-          <Input
-            type="password"
-            onChange={handleChange}
-            name="password"
-            value={password}
-            minLength="8"
-            required
-          />
-        </FormFields>
-        {errorMessage && <ErrorLabel>{errorMessage}</ErrorLabel>}
-        <Button type="submit">Sign Up</Button>
-        <p> OR </p>
-        <Button type="submit">Continue with Google</Button>
-      </Form>
-      <br />
-      <h3>Already have an account?</h3>
-      <h3>
-        <Link to="/signin">Sign In</Link> here.
-      </h3>
-    </Wrapper>
+    <SignUpBody>
+      <Wrapper>
+        <h2>Create Account</h2>
+        <Form onSubmit={handleSubmit}>
+          <FormFields>
+            <label>Name</label>
+            <Input
+              type="text"
+              onChange={handleChange}
+              name="name"
+              value={name}
+              autoFocus
+              required
+            />
+            <label>Email</label>
+            <Input
+              type="email"
+              onChange={handleChange}
+              name="username"
+              value={username}
+              required
+            />
+            <label>Password</label>
+            <Input
+              type="password"
+              onChange={handleChange}
+              name="password"
+              value={password}
+              minLength="8"
+              required
+            />
+          </FormFields>
+          {errorMessage && <ErrorLabel>{errorMessage}</ErrorLabel>}
+          <Button type="submit">Sign Up</Button>
+          <p> OR </p>
+          <Button type="submit">Continue with Google</Button>
+        </Form>
+        <br />
+        <h3>Already have an account?</h3>
+        <h3>
+          <Link to="/signin">Sign In</Link> here.
+        </h3>
+      </Wrapper>
+    </SignUpBody>
   );
 };
 
