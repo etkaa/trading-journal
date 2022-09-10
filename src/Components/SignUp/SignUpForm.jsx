@@ -43,18 +43,18 @@ const SignUpForm = () => {
           auth_method: "local",
         },
         {
+          withCredentials: true,
           headers: {
             "content-type": "application/json",
           },
-        },
-        { withCredentials: true }
+        }
       )
       .then((response) => {
-        console.log("response.data:", response.data);
-        if (response.data.success === true) {
-          setCurrentUserID(response.data.user._id);
+        console.log("response.data = ", response.data);
+        if (response.status === 200) {
+          setCurrentUserID(response.data.userID);
           setIsAuthenticated(true);
-          navigate("/dashboard");
+          navigate("/dashboard", { replace: true });
         } else {
           setErrorMessage(response.data.message);
         }

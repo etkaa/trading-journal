@@ -3,7 +3,6 @@ import { UserContext } from "../../Context/User.Context";
 import { StatsContainer } from "./Stats.styles";
 import StatCard from "../StatCard/StatCard";
 import { getUserStats, getUserProfileFields } from "../../Utils/ApiRequests";
-import Spinner from "../Spinner/Spinner";
 import { useNavigate } from "react-router-dom";
 
 const defaultUserStats = {
@@ -75,19 +74,21 @@ const Stats = () => {
 
   const initialBalance = Number(userProfileFields.initialBalance);
   const currentBalance =
-    Number(initialBalance) + Number(userStats.sumOfAllTrades);
+    Number(initialBalance) + Number(userStats.sumOfAllTrades) || 0;
   const winLossRatio = Number(userStats.winLossRatio);
   const currentPandL =
-    (Number(userStats.sumOfAllTrades) / Number(initialBalance)) * 100;
+    (Number(userStats.sumOfAllTrades) / Number(initialBalance)) * 100 || 0;
   const averageRiskReward = Number(userStats.averageRiskReward);
+  const averageReturn =
+    Number(userStats.sumOfAllTrades / userStats.totalTradeCount) || 0;
+  const averageVolume =
+    Number(userStats.totalVolume / userStats.totalTradeCount) || 0;
 
   // console.log("USE EFFECT RUNS TOO MANY TIMES", userStats);
 
   return (
-    <StatsContainer>
-      {loading ? (
-        <Spinner />
-      ) : (
+    <Fragment>
+      <StatsContainer>
         <Fragment>
           <StatCard
             statTitle={"Current P/L"}
@@ -95,49 +96,53 @@ const Stats = () => {
             statDetail={`+ $${Number(
               userStats.sumOfAllTrades
             ).toLocaleString()}`}
+            loading={loading}
           />
           <StatCard
             statTitle={"Balance"}
             stat={`$${currentBalance.toLocaleString()}`}
             statDetail={userProfileFields.brokerName}
+            loading={loading}
           />
           <StatCard
             statTitle={"Win/Loss Ratio"}
             stat={`%${winLossRatio.toFixed(2)}`}
             statDetail={"YTD 2022"}
+            loading={loading}
           />
           <StatCard
             statTitle={"Risk/Reward"}
             stat={`${averageRiskReward.toFixed(2)}`}
             statDetail={"Average"}
+            loading={loading}
           />
           <StatCard
             statTitle={"Average Return"}
-            stat={`$${(
-              userStats.sumOfAllTrades / userStats.totalTradeCount
-            ).toLocaleString()}`}
+            stat={`$${averageReturn.toLocaleString()}`}
             statDetail={"YTD 2022"}
+            loading={loading}
           />
           <StatCard
             statTitle={"Total Volume"}
             stat={`${Number(userStats.totalVolume).toFixed(2)}`}
             statDetail={"All Times"}
+            loading={loading}
           />
           <StatCard
             statTitle={"Average Volume"}
-            stat={`${Number(
-              userStats.totalVolume / userStats.totalTradeCount
-            ).toFixed(2)}`}
+            stat={`${averageVolume.toFixed(2)}`}
             statDetail={"All Times"}
+            loading={loading}
           />
           <StatCard
             statTitle={"Total Trades"}
             stat={`${userStats.totalTradeCount}`}
             statDetail={"All Times"}
+            loading={loading}
           />
         </Fragment>
-      )}
-    </StatsContainer>
+      </StatsContainer>
+    </Fragment>
   );
 };
 

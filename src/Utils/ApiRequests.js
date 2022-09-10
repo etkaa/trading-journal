@@ -2,6 +2,14 @@ import axios from "axios";
 
 export const updateUserTrades = async (id, newTradeFields) => {
   let result;
+
+  if (!id && !newTradeFields) {
+    console.log(
+      "No valid id or tradeFields given, updateUserTrades aborting mission."
+    );
+    return;
+  }
+
   await axios
     .post(
       `${process.env.REACT_APP_API_URL}/user/update/trades`,
@@ -40,6 +48,13 @@ export const updateUserTrades = async (id, newTradeFields) => {
 
 export const updateUserProfileFields = async (userID, newFormFields) => {
   let result;
+
+  if (!userID && !newFormFields) {
+    console.log(
+      "No valid id or formFields given, updateUserPorfileFields aborting mission."
+    );
+    return;
+  }
 
   await axios
     .post(
@@ -83,6 +98,11 @@ export const updateUserProfileFields = async (userID, newFormFields) => {
 export const getUserProfileFields = async (userID) => {
   let userProfileFields;
 
+  if (!userID) {
+    console.log("No valid id given, getUserProfileFields aborting mission.");
+    return;
+  }
+
   await axios
     .get(`${process.env.REACT_APP_API_URL}/user/profile/${userID}`, {
       withCredentials: true,
@@ -113,6 +133,11 @@ export const getUserProfileFields = async (userID) => {
 export const getUserTrades = async (currentUserID) => {
   let userTrades;
 
+  if (!currentUserID) {
+    console.log("No valid id given, getUserTrades aborting mission.");
+    return;
+  }
+
   await axios
     .get(`${process.env.REACT_APP_API_URL}/user/trades/${currentUserID}`, {
       withCredentials: true,
@@ -142,6 +167,11 @@ export const getUserTrades = async (currentUserID) => {
 
 export const getUserStats = async (id) => {
   let allStats;
+
+  if (!id) {
+    console.log("No valid id given, getUserStats aborting mission.");
+    return;
+  }
 
   await axios
     .get(`${process.env.REACT_APP_API_URL}/user/stats/${id}`, {

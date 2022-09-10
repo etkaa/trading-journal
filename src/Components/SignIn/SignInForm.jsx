@@ -50,7 +50,7 @@ const SignInForm = () => {
         }
       )
       .then((response) => {
-        if (response.data.success === true) {
+        if (response.status === 200) {
           setCurrentUserID(response.data.userID);
           setIsAuthenticated(true);
           navigate(from, { replace: true });

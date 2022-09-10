@@ -67,21 +67,21 @@ const Table = () => {
   };
 
   return (
-    <TableContainer>
-      <StyledTable>
-        {loading ? (
-          <Spinner />
-        ) : (
-          <Fragment>
+    <Fragment>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <TableContainer>
+          <StyledTable>
             <TableHead sortHandler={handleSort} />
             {userTrades &&
               userTrades.map((entry) => {
                 return <Entry key={entry._id} entry={entry} />;
               })}
-          </Fragment>
-        )}
-      </StyledTable>
-    </TableContainer>
+          </StyledTable>
+        </TableContainer>
+      )}
+    </Fragment>
   );
 };
 
