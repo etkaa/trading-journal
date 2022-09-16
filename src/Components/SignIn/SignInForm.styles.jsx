@@ -23,8 +23,9 @@ export const Wrapper = styled.div`
   border-radius: 10px;
   background: #9772fb;
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 800px) {
     max-width: 85%;
+    margin: 50px auto 50px auto;
   }
 
   @media screen and (max-width: 900px) and (min-width: 700px) {
@@ -65,6 +66,7 @@ export const Form = styled.form`
   width: 100%;
   background-color: white;
   background: #9772fb;
+
 `;
 
 export const FormFields = styled.div`
@@ -73,6 +75,11 @@ export const FormFields = styled.div`
   height: 150px;
   width: 250px;
   margin: 30px auto;
+
+  @media screen and (max-width: 800px) {
+    width: 70%;
+    height: 10%;
+  }
 `;
 
 export const Input = styled.input`

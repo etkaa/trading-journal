@@ -10,6 +10,13 @@ export const HomeBody = styled.body`
   );
   height: 100vh;
   overflow: hidden;
+  padding-top: 30px;
+
+  @media screen and (max-width: 800px) {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
 `;
 
 export const HomeContainer = styled.div`
@@ -28,6 +35,18 @@ export const HomeContainer = styled.div`
     rgba(13, 79, 171, 0.6) 90%
   ); */
   /* box-shadow: 0px 4px 25px rgb(255 255 255 / 0.6); */
+
+  @media screen and (max-width: 800px) {
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 2px solid red; */
+    margin: auto auto 50px auto;
+    width: 90%;
+  }
 `;
 
 export const IntroContainer = styled.div`
@@ -42,6 +61,15 @@ export const IntroContainer = styled.div`
   width: 60%;
   border-radius: 50px;
   background-color: #100720;
+
+  @media screen and (max-width: 800px) {
+    display: flex;
+    margin-bottom: 50px;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    box-shadow: none;
+  }
 
   img {
     width: 80%;
@@ -103,6 +131,12 @@ export const AuthContainer = styled.div`
   border-radius: 40px;
   background-color: #100720;
   box-shadow: 0px 4px 25px rgb(255 255 255 / 0.8);
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+    height: 700px;
+    box-shadow: none;
+  }
 `;
 
 export const AuthHeaderText = styled.h1`

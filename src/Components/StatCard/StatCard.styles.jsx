@@ -28,6 +28,11 @@ export const CardContainer = styled.div`
     font-weight: 300;
     font-size: 15px;
   }
+
+  @media screen and (max-width: 800px) {
+    width: 75%;
+    height: 200px;
+  }
 `;
 
 export const StatContainer = styled.div`

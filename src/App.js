@@ -10,6 +10,7 @@ import Spinner from "./Components/Spinner/Spinner";
 import NotFound from "./Components/NotFound/NotFound";
 import { useContext } from "react";
 import { UserContext } from "./Context/User.Context";
+import Details from "./Components/Details/Details";
 
 const App = () => {
   const { checkingAuth } = useContext(UserContext);
@@ -36,6 +37,10 @@ const App = () => {
         <Route
           path="/profile"
           element={checkingAuth ? <Spinner /> : <Profile />}
+        />
+        <Route
+          path="/user/trades/:tradeId"
+          element={checkingAuth ? <Spinner /> : <Details />}
         />
       </Route>
 

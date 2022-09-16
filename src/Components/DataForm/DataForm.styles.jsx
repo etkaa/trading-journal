@@ -6,6 +6,14 @@ export const FormContainer = styled.div`
   border-radius: 10px;
   background-color: #100720;
   box-shadow: 0px 10px 25px rgb(0 0 0 / 0.3);
+
+  @media screen and (max-width: 800px) {
+    width: 90%;
+    /* border: 2px solid yellow; */
+    overflow: hidden;
+    margin: auto auto 50px auto;
+    box-shadow: 0px 10px 25px rgb(0 0 0 / 0.5);
+  }
 `;
 
 // export const FirstTradeHeaderContainer = styled.div`
@@ -26,6 +34,15 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    /* border: 2px solid red; */
+    margin: 20px auto;
+  }
 
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
@@ -62,6 +79,12 @@ export const FormInput = styled.input`
   color: white;
   box-shadow: 0px 2px 5px rgb(114 76 249 / 0.7);
 
+  @media screen and (max-width: 800px) {
+    flex-direction: column;
+    margin: 20px auto;
+    width: 80%;
+  }
+
   :focus {
     outline: none;
     border: 2px solid #724cf9;
@@ -86,5 +109,10 @@ export const Button = styled.button`
     background-color: white;
     color: black;
     transition: ease-in 50ms;
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 60%;
+    margin: 20px auto;
   }
 `;

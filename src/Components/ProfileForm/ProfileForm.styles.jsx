@@ -14,6 +14,7 @@ export const StyledForm = styled.form`
   box-shadow: 3px 3px;
   color: #3d3c42;
   /* border: 1px solid yellow; */
+
   label {
     color: white;
   }
@@ -87,6 +88,11 @@ export const Button = styled.button`
   width: 30%;
   color: white;
   cursor: pointer;
+  box-shadow: 0px 2px 5px rgb(255 255 255 / 0.7);
+
+  @media screen and (max-width: 800px) {
+    width: 35%;
+  }
 
   :hover {
     background-color: white;
@@ -105,6 +111,7 @@ export const Button = styled.button`
 
   &.cancel {
     background-color: #d62840;
+    box-shadow: 0px 2px 5px rgb(255 105 180 / 0.7);
     :hover {
       background-color: white;
       color: black;

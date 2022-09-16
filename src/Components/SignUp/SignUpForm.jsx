@@ -21,13 +21,14 @@ const defaultFormFields = {
 
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [error, setError] = useState(null);
   const { name, username, password } = formFields;
   const { setCurrentUserID, setIsAuthenticated } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+    setError(false);
     setFormFields({ ...formFields, [name]: value });
   };
 
@@ -55,16 +56,14 @@ const SignUpForm = () => {
         if (response.status === 200) {
           setCurrentUserID(response.data.userID);
           setIsAuthenticated(true);
+          setFormFields(defaultFormFields);
           navigate("/dashboard", { replace: true });
-        } else {
-          setErrorMessage(response.data.message);
         }
       })
       .catch((error) => {
+        setError(true);
         console.log("this is signupform catch error", error);
       });
-
-    setFormFields(defaultFormFields);
   };
 
   return (
@@ -100,7 +99,9 @@ const SignUpForm = () => {
               required
             />
           </FormFields>
-          {errorMessage && <ErrorLabel>{errorMessage}</ErrorLabel>}
+          {error && (
+            <ErrorLabel>User already exists, please sign in.</ErrorLabel>
+          )}
           <Button type="submit">Sign Up</Button>
           <p> OR </p>
           <Button type="submit">Continue with Google</Button>

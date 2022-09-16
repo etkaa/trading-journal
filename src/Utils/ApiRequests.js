@@ -46,6 +46,122 @@ export const updateUserTrades = async (id, newTradeFields) => {
   return result;
 };
 
+export const patchUserTrade = async (tradeId, updatedTradeFields) => {
+  let result;
+
+  if (!updatedTradeFields && !tradeId) {
+    console.log(
+      "No valid id or tradeFields given, patchUserTrades aborting mission."
+    );
+    return;
+  }
+
+  await axios
+    .patch(
+      `${process.env.REACT_APP_API_URL}/user/patch/trades/${tradeId}`,
+      {
+        updatedTrade: updatedTradeFields,
+      },
+      {
+        withCredentials: true,
+        headers: {
+          "content-type": "application/json",
+        },
+      }
+    )
+    .then((response) => {
+      if (response.status === 200) {
+        result = true;
+      } else {
+        result = false;
+      }
+    })
+    .catch((error) => {
+      if (error.response.status === 401) {
+        throw Error(
+          JSON.stringify({
+            status: "401",
+            message: "Authentication failed, please try signing in.",
+          })
+        );
+      }
+      console.log(error);
+    });
+
+  return result;
+};
+
+export const getTradeDetails = async (tradeId) => {
+  let userTrade;
+
+  if (!tradeId) {
+    console.log("No valid id given, getTradeDetails aborting mission.");
+    return;
+  }
+
+  await axios
+    .get(`${process.env.REACT_APP_API_URL}/user/trades/details/${tradeId}`, {
+      withCredentials: true,
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        userTrade = response.data.requestedTrade;
+      }
+    })
+    .catch((error) => {
+      if (error.response.status === 401) {
+        throw Error(
+          JSON.stringify({
+            status: "401",
+            message: "Authentication failed, please try signing in.",
+          })
+        );
+      }
+      console.log(error);
+    });
+
+  return userTrade;
+};
+
+export const deleteUserTrade = async (tradeId) => {
+  let result;
+
+  if (!tradeId) {
+    console.log("No valid id given, deleteUserTrade aborting mission.");
+    return;
+  }
+
+  await axios
+    .delete(`${process.env.REACT_APP_API_URL}/user/trade/delete/${tradeId}`, {
+      withCredentials: true,
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        result = true;
+        console.log("Trade deleted successfully!");
+      }
+    })
+    .catch((error) => {
+      if (error.response.status === 401) {
+        throw Error(
+          JSON.stringify({
+            status: "401",
+            message: "Authentication failed, please try signing in.",
+          })
+        );
+      }
+      console.log(error);
+    });
+
+  return result;
+};
+
 export const updateUserProfileFields = async (userID, newFormFields) => {
   let result;
 

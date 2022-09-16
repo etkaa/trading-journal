@@ -7,10 +7,10 @@ export const TableCell = styled.td`
 
 export const StyledNavLink = styled(NavLink)`
   text-decoration: none;
-  color: gray;
+  color: #724cf9;
   font-size: 1.4rem;
   :hover {
-    color: #724cf9;
+    color: white;
     cursor: pointer;
     transition: 0.2s;
   }

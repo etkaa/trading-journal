@@ -62,7 +62,7 @@ const SignInForm = () => {
         setError(true);
       });
 
-    setFormFields(defaultFormFields);
+    // setFormFields(defaultFormFields);
   };
 
   return (

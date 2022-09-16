@@ -4,6 +4,10 @@ export const TableHeadItem = styled.th`
   padding: 15px 10px;
   font-weight: 500;
 
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
+
   :hover {
     cursor: pointer;
   }

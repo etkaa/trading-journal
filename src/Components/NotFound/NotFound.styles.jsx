@@ -38,6 +38,20 @@ export const HeaderContainer = styled.div`
   }
 
   overflow: hidden;
+
+  @media screen and (max-width: 800px) {
+    width: 60%;
+    h1 {
+      font-size: 2rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+    }
+    height: 30%;
+    text-align: center;
+    padding-bottom: 20px;
+    margin: 30px auto 10px auto;
+  }
 `;
 
 export const BigTextContainer = styled.div`
@@ -68,6 +82,17 @@ export const BigTextContainer = styled.div`
   }
 
   overflow: hidden;
+
+  @media screen and (max-width: 800px) {
+    width: 90%;
+    h1 {
+      font-size: 7rem;
+      margin: 10px auto 0px auto;
+    }
+    height: 40%;
+    /* border: 1px solid yellow; */
+    text-align: center;
+  }
 `;
 
 export const ButtonContainer = styled.div`
@@ -86,6 +111,13 @@ export const ButtonContainer = styled.div`
   }
 
   overflow: hidden;
+
+  @media screen and (max-width: 800px) {
+    width: 90%;
+    height: 20%;
+    text-align: center;
+    margin: 10px auto 50px auto;
+  }
 `;
 
 export const Button = styled.button`
@@ -101,6 +133,10 @@ export const Button = styled.button`
   background: rgba(255, 255, 255, 0.8);
   cursor: pointer;
   box-shadow: 2px 3px;
+
+  @media screen and (max-width: 800px) {
+    width: 60%;
+  }
 
   :hover {
     color: rgba(13, 79, 171, 1);

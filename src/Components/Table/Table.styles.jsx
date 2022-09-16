@@ -11,6 +11,17 @@ export const TableContainer = styled.div`
   text-align: center;
   border-collapse: collapse;
   box-shadow: 0px 10px 25px rgb(0 0 0 / 0.3);
+
+  @media screen and (max-width: 800px) {
+    td {
+      display: flex;
+      flex-direction: column;
+      border-radius: 5px;
+      margin: auto;
+      padding: 15px;
+      width: 90%;
+    }
+  }
 `;
 
 export const StyledTable = styled.table`

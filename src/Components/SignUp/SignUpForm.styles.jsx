@@ -10,6 +10,11 @@ export const SignUpBody = styled.body`
   );
   height: 100vh;
   overflow: hidden;
+
+  @media screen and (max-width: 800px) {
+    height: 100%;
+    overflow: hidden;
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -38,8 +43,9 @@ export const Wrapper = styled.div`
     font-weight: 400;
   }
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 800px) {
     max-width: 85%;
+    margin: 30px auto 50px auto;
   }
 
   @media screen and (max-width: 900px) and (min-width: 700px) {
@@ -73,6 +79,12 @@ export const FormFields = styled.div`
   height: 225px;
   width: 250px;
   margin: 30px auto;
+
+  @media screen and (max-width: 800px) {
+    width: 70%;
+    height: 10%;
+    margin: 20px;
+  }
 `;
 
 export const Input = styled.input`
