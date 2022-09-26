@@ -8,7 +8,7 @@ export const FormContainer = styled.div`
   box-shadow: 0px 10px 25px rgb(0 0 0 / 0.3);
 
   @media screen and (max-width: 800px) {
-    width: 90%;
+    width: 100%;
     /* border: 2px solid yellow; */
     overflow: hidden;
     margin: auto auto 50px auto;

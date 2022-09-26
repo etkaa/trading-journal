@@ -13,6 +13,10 @@ export const NavBar = styled.ul`
   height: 30px;
   box-shadow: 0px 2px 20px rgb(0 0 0 / 0.5);
 
+  @media screen and (max-width: 800px) {
+    justify-content: space-around;
+    padding: 20px 10px;
+  }
 `;
 
 export const LogoContainer = styled(Link)`
@@ -23,8 +27,7 @@ export const LogoContainer = styled(Link)`
   padding: 5px;
 
   @media screen and (max-width: 800px) {
-    width: 50px;
-    padding: 0px;
+    display: none;
   }
 `;
 
@@ -47,4 +50,8 @@ export const LinksContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 2em;
+
+  @media screen and (max-width: 800px) {
+    gap: 3rem;
+  }
 `;

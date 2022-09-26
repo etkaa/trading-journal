@@ -69,6 +69,11 @@ export const IntroContainer = styled.div`
     justify-content: space-between;
     width: 100%;
     box-shadow: none;
+
+    h1 {
+      font-size: 35px;
+    }
+    
   }
 
   img {
@@ -136,6 +141,9 @@ export const AuthContainer = styled.div`
     width: 100%;
     height: 700px;
     box-shadow: none;
+    h1 {
+      font-size: 65px;
+    }
   }
 `;
 
@@ -167,6 +175,11 @@ export const ButtonContainer = styled.div`
   /* border: 2px solid red; */
   margin: auto auto;
   border-radius: 20px;
+
+  @media screen and (max-width: 800px) {
+    height: 47%;
+    width: 85%;
+  }
 
   min-width: 0;
   min-height: 0;

@@ -60,6 +60,10 @@ export const ProfileInfoInput = styled.input`
   font-size: 16px;
   box-shadow: 0px 5px 10px rgb(255 255 255 / 0.2);
 
+  @media screen and (max-width: 800px) {
+    width: 80%;
+  }
+
   :focus {
     color: white;
     box-shadow: 1px 1px;

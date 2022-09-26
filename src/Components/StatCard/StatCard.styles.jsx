@@ -30,8 +30,24 @@ export const CardContainer = styled.div`
   }
 
   @media screen and (max-width: 800px) {
-    width: 75%;
+    width: 80%;
     height: 200px;
+    margin: 20px 5px;
+    /* border: 1px red solid; */
+
+    h1 {
+      font-size: 30px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 400;
+    }
+
+    h5 {
+      font-weight: 300;
+      font-size: 15px;
+    }
   }
 `;
 

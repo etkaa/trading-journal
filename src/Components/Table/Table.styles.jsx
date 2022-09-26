@@ -13,6 +13,8 @@ export const TableContainer = styled.div`
   box-shadow: 0px 10px 25px rgb(0 0 0 / 0.3);
 
   @media screen and (max-width: 800px) {
+    width: 100%;
+
     td {
       display: flex;
       flex-direction: column;

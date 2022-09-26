@@ -40,7 +40,7 @@ export const HeaderContainer = styled.div`
   overflow: hidden;
 
   @media screen and (max-width: 800px) {
-    width: 60%;
+    width: 80%;
     h1 {
       font-size: 2rem;
     }
@@ -88,6 +88,9 @@ export const BigTextContainer = styled.div`
     h1 {
       font-size: 7rem;
       margin: 10px auto 0px auto;
+    }
+    h2 {
+      font-size: 4rem;
     }
     height: 40%;
     /* border: 1px solid yellow; */

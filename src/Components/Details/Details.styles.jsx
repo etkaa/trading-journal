@@ -57,12 +57,12 @@ export const StyledForm = styled.form`
 
   input[type="date"] {
     padding: 1px 4px;
-    color: gray;
+    /* color: gray; */
     font-size: 18px;
   }
   input[type="time"] {
     padding: 1px 4px;
-    color: gray;
+    /* color: gray; */
     font-size: 18px;
   }
 `;
@@ -94,6 +94,10 @@ export const FormInput = styled.input`
   color: white;
   box-shadow: 0px 2px 5px rgb(114 76 249 / 0.7);
   /* border: 2px solid yellow; */
+
+  @media screen and (max-width: 800px) {
+    width: 80%;
+  }
 
   :focus {
     outline: none;
@@ -131,7 +135,7 @@ export const Button = styled.button`
   cursor: pointer;
 
   @media screen and (max-width: 800px) {
-    width: 28%;
+    width: 30%;
   }
 
   :hover {

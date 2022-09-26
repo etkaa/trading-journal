@@ -25,7 +25,7 @@ export const Wrapper = styled.div`
 
   @media screen and (max-width: 800px) {
     max-width: 85%;
-    margin: 50px auto 50px auto;
+    margin: 80px auto;
   }
 
   @media screen and (max-width: 900px) and (min-width: 700px) {
@@ -66,7 +66,6 @@ export const Form = styled.form`
   width: 100%;
   background-color: white;
   background: #9772fb;
-
 `;
 
 export const FormFields = styled.div`

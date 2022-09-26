@@ -37,4 +37,8 @@ export const TopContainer = styled.div`
   padding: 30px 10px 40px;
   /* border: 2px solid red; */
   margin-bottom: 50px;
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
 `;

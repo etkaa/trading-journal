@@ -22,7 +22,12 @@ export const StatsContainer = styled.div`
   }
 
   @media screen and (max-width: 800px) {
-    grid-template-columns: 4fr 4fr;
+    grid-template-columns: 2fr 2fr;
+    align-items: center;
+    column-gap: 20px;
+    padding: 5px 20px;
+    /* border: 1px solid yellow; */
+    margin: 0px auto 50px;
     width: 90%;
   }
 `;

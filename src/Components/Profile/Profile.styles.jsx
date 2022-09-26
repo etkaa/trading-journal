@@ -32,8 +32,8 @@ export const ProfileContainer = styled.div`
   box-shadow: 0px 10px 15px rgb(114 76 249 / 0.5);
 
   @media screen and (max-width: 800px) {
-    width: 90%;
-    height: 1100px;
+    width: 95%;
+    height: 1050px;
     margin-bottom: 50px;
     /* border: 2px solid red; */
     display: flex;
@@ -57,16 +57,16 @@ export const ImageContainer = styled.div`
   /* border: 1px solid blue; */
 
   @media screen and (max-width: 800px) {
-    width: 80%;
+    width: 90%;
     margin: 30px auto auto;
-    height: 33%;
+    height: 40%;
     box-shadow: 0px 10px 15px rgb(114 76 249 / 0.2);
   }
 `;
 
 export const ProfilePicture = styled.div`
   margin: auto;
-  width: 80%;
+  width: 85%;
   height: 90%;
   box-shadow: 0px 0px 40px rgb(114 76 249 / 0.3);
   border-radius: 50%;
@@ -117,7 +117,7 @@ export const FormContainer = styled.div`
   /* border: 1px solid green; */
 
   @media screen and (max-width: 800px) {
-    width: 90%;
+    width: 95%;
     margin: 30px auto;
     display: flex;
     flex-direction: column;
